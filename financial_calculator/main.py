@@ -3,7 +3,7 @@
 def main():
     Acount_Amount=int(input("what is your bank acounts amount right now? "))
     #this will caslculate your intrest.
-    monthly_income= 
+
 def intrest_calculator():
     global Acount_Amount
     Amount_with_intrest=Acount_Amount*.06
@@ -14,6 +14,22 @@ def intrest_calculator():
 
 def budget_allocator():
     monthly_income= int(input("what is you income per mounth? "))
+    #food: 15%
+    food=monthly_income*.15
+    #entertainment: 5%
+    entertainment=monthly_income*.05
+    #rent: 30%
+    rent=monthly_income*.3
+    #taxes: 4.85%
+    taxes=monthly_income*.0485
+    #saveings: 20%
+    saveing=monthly_income*.2
+    #other: 25.15%
+    other=monthly_income*.2515
+    print("you can spend ",food, " on food")
+    print("you can spend ",entertainment, "ontertainment.")
+    print("you can spend ",rent," on rent")
+    print(" ",," ")
     pass   
     
 main()

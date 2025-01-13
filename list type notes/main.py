@@ -1,4 +1,4 @@
-fam = ("Gage", "Gavin", "Mother", "Father")
+fam = {"Gage", "Gavin", "Mother", "Father"}
 
-print(fam.index("Gage"))
+print(fam)
 
