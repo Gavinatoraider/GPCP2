@@ -13,7 +13,7 @@ def intrest_calculator():
     pass
 
 def budget_allocator():
-    monthly_income= int(input("what is you income per mounth? "))
+    global monthly_income= int(input("what is you income per mounth? "))
     #food: 15%
     food=monthly_income*.15
     #entertainment: 5%
@@ -29,7 +29,8 @@ def budget_allocator():
     print("you can spend ",food, " on food")
     print("you can spend ",entertainment, "ontertainment.")
     print("you can spend ",rent," on rent")
-    print(" ",," ")
+    print("you can spend ",saveings," on saveings")
+    print("you can spend ", ," on other things")
     pass   
     
 main()
