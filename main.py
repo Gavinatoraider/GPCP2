@@ -5,7 +5,9 @@
 # Defining Funcitons
 
 def main():
-    pass
+    while True:
+        cs()
+        choice = int_input("MUSIC FESTIVAL\n\n1. Test Option")
 
 def int_input(text): # Only takes in integers
     while True:
