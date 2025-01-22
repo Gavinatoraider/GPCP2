@@ -1,14 +1,14 @@
-Music Festival Project
+# Music Festival Project
 
 =============================
 
-Team Leader:
+**Team Leader:**
 
 Jackson Hauley (jackson.hauley@ucas-edu.net)
 
 =============================
 
-Team Members:
+**Team Members:**
 
 Gavin Pierce (gavin.pierce@ucas-edu.net)
 
