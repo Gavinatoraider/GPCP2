@@ -16,4 +16,7 @@ Nicole (Lizzy) Saldana (lizzy.saldana@ucas-edu.net)
 
 https://docs.google.com/document/d/1oP-YyhGAE7bmOMVBD1WPyucvNjRWc1DBi2clL6aQegw/edit?tab=t.0
 
+**Project Link:**
+
+https://ucas-edu.instructure.com/courses/3902/pages/music-festival-management-system-project-description?module_item_id=168030
 
