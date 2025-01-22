@@ -7,14 +7,16 @@
 def main():
     while True:
         cs()
-        choice = int_input("MUSIC FESTIVAL\n\n1. Information\n2. Buy Ticket\n3. Schedule\n4. Exit")
+        choice = int_input("MUSIC FESTIVAL\n\n1. Information\n2. Tickets\n3. Schedule\n4. Recommendation\n5. Exit")
         if choice == 1: # Information
             pass
         elif choice == 2: # Buy Tickets
             pass
         elif choice == 3: # Schedule
             pass
-        elif choice == 4: # Exit
+        elif choice == 4: # Recommendation
+            pass
+        elif choice == 5: # Exit
             cs()
             print('Thanks for attending!')
             exit()
