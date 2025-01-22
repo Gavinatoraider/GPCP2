@@ -4,17 +4,17 @@ Music Festival Project
 
 Team Leader:
 
-Jackson Hauley
+Jackson Hauley (jackson.hauley@ucas-edu.net)
 
 =============================
 
 Team Members:
 
-Gavin Pierce
+Gavin Pierce (gavin.pierce@ucas-edu.net)
 
-Luke Murdock
+Luke Murdock (luke.murdock@ucas-edu.net)
 
-Nicole (Lizzy) Saldana
+Nicole (Lizzy) Saldana (lizzy.saldana@ucas-edu.net)
 
 =============================
 
