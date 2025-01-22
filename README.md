@@ -3,7 +3,7 @@ Music Festival Project
 Team Leader:
 Jackson Hauley
 
-Team Members:
+Team Members:\n
 Gavin Pierce
 Luke Murdock
 Nicole (Lizzy) Saldana
