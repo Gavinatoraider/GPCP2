@@ -57,6 +57,11 @@ def float_input(text): # Only takes in floats
             continue
         return output
 
+def cs(): # Clear Screen
+    print("\033c",end="")
+
+
+
 def ticket_main(): # Ticket main function (runs all ticket information through here) ((jacksons function))
     while True:
         cs()
@@ -163,35 +168,49 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
         
 
 
-def cs(): # Clear Screen
-    print("\033c",end="")
+
 
 # Luke's Functions
 def artist_main(): # 
     while True:
         cs()
-        choice = int_input("Artist List\n\n1. Display\n2. Add\n3. Remove\n4. Edit\n5. Exit")
+        choice = int_input("\nArtist List Management\n\n1. Display\n2. Add\n3. Remove\n4. Edit\n5. Exit\n")
         if choice == 1:
             print(f"Artist List: {artist_list}")
+            input()
         elif choice == 2:
             add_artist()
         elif choice == 3:
             remove_artist()
         elif choice == 4:
-            edit_artist(int_input("What do you want changed?\nName(1) Genre(2) Time(3)"))
+            edit_artist(int_input("What do you want changed?\nName(1) Genre(2) Time(3)\n"))
         else:
             break
 
 def add_artist(): #
     print("Adding An Artist")
-    artist_name = str_input("What is the artist's name?")
-    artist_genre = str_input("What is the artist's genre?")
-    artist_time = str_input("What is the artist's time dutation?")
+    artist_name = str_input("What is the artist's name?:\n")
+    artist_genre = str_input("What is the artist's genre?:\n")
+    artist_time = str_input("What is the artist's time duration in minutes?:\n")
+
+    artist_list.append([artist_name, artist_genre, artist_time])
 
 def remove_artist(): #
-    pass
+    print("Removing An Artist")
+    artist_name = str_input("What is the artist's name?:\n")
+
+    for artist in artist_list:
+        if artist_name == artist[0]:
+            artist_list.remove(artist)
+
 def edit_artist(change_type): #
-    pass
+    print("Editing An Artist")
+    artist_name = str_input("What is the artist's name?:\n")
+    new_text = str_input("What do you want it changed to?:\n")
+
+    for artist in artist_list:
+        if artist_name == artist[0]:
+            artist_list[change_type] = new_text
 
 # Running Code
 
