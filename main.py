@@ -73,6 +73,7 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
             main()
 
 def buy_ticket(): # Buy a ticket (Jacksons Function)
+    global id
     ticket = []
     cs()
     print("Buying Ticket\n") # Visual
