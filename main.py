@@ -72,6 +72,38 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
         elif choice == 5: # Exit
             main()
 
+def search_tickets(): # Search tickets 
+    cs()
+    print("Search All Tickets")
+    search_keyword = input("Enter any keyword or ID to try and find a ticket: ") # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME
+    print()
+    for x in range(len(tickets)):
+        for i in tickets[x]:
+            if i == search_keyword:
+                print(f"Name: {tickets[x][0]} {tickets[x][1]}   ID: {tickets[x][6]}")
+    search_ID = int_input("\nWhich ticket do you want to open? (ID): ")
+    print()
+    for x in tickets:
+        if tickets[x][6] == search_ID:
+            print(f"""
+██████████████████████████████████████████████████████
+█   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
+█  /     \\  █ Age: {tickets[x][2]}                   
+█  |O   O|  █ Membership Level: {tickets[x][3]}   
+█  |  L  |  █ Date Bought: {tickets[x][9]}  
+█   \ W /   █ Duration: {tickets[x][4]}         
+█    | |    █ ID: {tickets[x][6]}                     
+██████████████████████████████████████████████████████""") # Printing out their ticket
+            print(f"Cost: ${tickets[x][5]}")
+            print(f"Credit Card: ${tickets[x][7]}")
+            print(f"CVV: ${tickets[x][8]}")
+            input("Press enter to continue")
+            break
+
+
+def ticket_report(): # Ticket report 
+    pass
+
 def buy_ticket(): # Buy a ticket (Jacksons Function)
     global id
     ticket = []
@@ -85,7 +117,7 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
         print(f"Bro there is no way your that age, I bet your {randage}") # Dissing on people who are joking around
         age = randage
     while True:
-        membership_choice = int_input("\nWhat membership level do you want to buy?\n1. NPC\n2. VIP\n3. MVP\n\nType number here (1-3): ") # Membership Level Selection
+        membership_choice = int_input("\nWhat membership level do you want to buy?\n1. NPC ($19.99)\n2. VIP ($49.99)\n3. MVP ($99.99)\n\nType number here (1-3): ") # Membership Level Selection
         if membership_choice == 1:
             membership = 'NPC' # NPC membership setting
             cost = 19.99
@@ -102,7 +134,7 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
             print("Invalid Input (1-3)")
             input("Press enter to continue")
     while True:
-        duration_choice = int_input("\nHow long do you want this ticket to work?\n1. 1 day\n2. 3 days\n3. 1 week\n4. 1 month\n5. Season pass\n\nType number here (1-5): ") # Duration Selection
+        duration_choice = int_input("\nHow long do you want this ticket to work?\n1. 1 day (+$0.00)\n2. 3 days (+$40.00)\n3. 1 week (+$80.00)\n4. 1 month (+$120.00)\n5. Season pass (+$300.00)\n\nType number here (1-5): ") # Duration Selection
         if duration_choice == 1: # These are for how long your ticket works
             duration = "1 Day" # 1 day duration
             cost += 0
@@ -141,12 +173,13 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
             print("\nTicket Bought!\n")
             id += 1
             print(f"Ticket ID: {id}")
+            ticket_time = time.ctime()
             print(f"""
 ██████████████████████████████████████████████████████
 █   WMWMW   █ Name: {firstname} {lastname}
 █  /     \\  █ Age: {age}                   
 █  |O   O|  █ Membership Level: {membership}   
-█  |  L  |  █ Date Bought: {time.ctime()}  
+█  |  L  |  █ Date Bought: {ticket_time}  
 █   \ W /   █ Duration: {duration}         
 █    | |    █ ID: {id}                     
 ██████████████████████████████████████████████████████""") # Printing out their ticket
@@ -157,8 +190,8 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
     else:
         print("Ticket Canceled!")
         input("Press enter to continue")
-    ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv]
-    tickets.append(ticketlist)
+    ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time]
+    tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME
     
 def ticket_information(): # Prints out ticket information (anyone change this if you want and its a good idea no stupid stuff)
     cs()
