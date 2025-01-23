@@ -71,13 +71,14 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
         elif choice == 2: # Search Tickets
             pass
         elif choice == 3: # Ticket Informatoin
-            pass
+            ticket_information()
         elif choice == 4: # Ticket Sales Report
             pass
         elif choice == 5: # Exit
             main()
 
 def buy_ticket(): # Buy a ticket (Jacksons Function)
+    global id
     ticket = []
     cs()
     print("Buying Ticket\n") # Visual
@@ -106,25 +107,25 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
             print("Invalid Input (1-3)")
             input("Press enter to continue")
     while True:
-        duration_choice = int_input("\nHow long do you want this ticket to work?\n1. 1 day\n2. 3 days\n3. 1 week\n4. 1 month\n5. season pass\n\nType number here (1-5): ") # Duration Selection
+        duration_choice = int_input("\nHow long do you want this ticket to work?\n1. 1 day\n2. 3 days\n3. 1 week\n4. 1 month\n5. Season pass\n\nType number here (1-5): ") # Duration Selection
         if duration_choice == 1: # These are for how long your ticket works
-            duration = "1 day" # 1 day duration
+            duration = "1 Day" # 1 day duration
             cost += 0
             break
         elif duration_choice == 2:
-            duration = "3 days" # 3 days duration
+            duration = "3 Days" # 3 days duration
             cost += 40
             break
         elif duration_choice == 3:
-            duration = "1 week" # 1 week duration
+            duration = "1 Week" # 1 week duration
             cost += 80
             break
         elif duration_choice == 4:
-            duration = "1 month"  # 1 month duration
+            duration = "1 Month"  # 1 month duration
             cost += 120
             break
         elif duration_choice == 5:
-            duration = "season pass" # season pass
+            duration = "Season Pass" # season pass
             cost += 300
             break
         else:
@@ -134,26 +135,26 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
     print(f"\nMembership {membership} selected") # Visual
     print(f"This ticket will last {duration}!")
     print(f"Cost: ${cost}")
-    quick_choice1 = str_input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
+    quick_choice1 = input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
     if quick_choice1 == "yes":
         cs()
         print(f"Buying {membership} ticket") # Buying Ticket
         creditcard = int_input("Enter credit card number, with no spaces (1234123412341234): ") # Getting money
         cvv = int_input("Enter CVV number, with no spaces (123): ")
-        quick_choice2 = str_input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
+        quick_choice2 = input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
         if quick_choice2 == "yes":
             print("\nTicket Bought!\n")
             id += 1
             print(f"Ticket ID: {id}")
             print(f"""
-████████████████████████████████████████████████
-█   WMWMW   | Name: {firstname:<15} {lastname:<15} █
-█  /     \\  | Age: {age:<5}                      █
-█  |O   O|  | Membership Level: {membership:<5}   █
-█  |  L  |  | Date Bought: {time.ctime():<20}      █
-█   \ W /   | Duration: {duration:<15}             █
-█    | |    | ID: {id:<10}                         █
-████████████████████████████████████████████████""") # Printing out their ticket
+██████████████████████████████████████████████████████
+█   WMWMW   █ Name: {firstname} {lastname}
+█  /     \\  █ Age: {age}                   
+█  |O   O|  █ Membership Level: {membership}   
+█  |  L  |  █ Date Bought: {time.ctime()}  
+█   \ W /   █ Duration: {duration}         
+█    | |    █ ID: {id}                     
+██████████████████████████████████████████████████████""") # Printing out their ticket
             input("Press enter to continue")
         else:
             print("Ticket Canceled!")
@@ -161,8 +162,32 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
     else:
         print("Ticket Canceled!")
         input("Press enter to continue")
+    ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv]
+    tickets.append(ticketlist)
     
+def ticket_information(): # Prints out ticket information (anyone change this if you want and its a good idea no stupid stuff)
+    cs()
+    print(f"""
+TICKET INFORMATION
 
+Membership Levels:
+    NPC ($19.99)
+The most basic pass, provides you with all concerts/artist shows in public seating
+    VIP ($49.99)
+The 2nd best pass, gives you a special fast lane in all lines and VIP seating zone, plus you get to meet an artist
+    MVP ($99.99)
+THE BEST pass you can buy, gives extremely fast lines and 50% off everything in the convention, meet all artists/performers and free merch + candy + 1 meal/day
+          
+Duration Levels:
+    1 Day: 1 day in the convention from 7:00am to 10:00pm
+    3 Day: 3 days in the convention from 7:00am to 10:00pm (2 overnights)
+    1 Week: 7 days in the convention from 7:00am to 10:00pm (6 overnights)
+    1 Month: 30 days in the convention from 7:00am to 10:00pm (29 overnights)
+    Season Pass: Full season access to the convention any time, 1 free meal a day (stackable with MVP)
+
+Your information is kept in a secure online server with {random.randint(1,1000)} firewalls protecting it RIGHT NOW
+          """)   
+    input('Press enter to continue')
 
 
         
