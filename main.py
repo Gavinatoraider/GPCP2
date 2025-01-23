@@ -66,7 +66,7 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
         elif choice == 2: # Search Tickets
             pass
         elif choice == 3: # Ticket Informatoin
-            pass
+            ticket_information()
         elif choice == 4: # Ticket Sales Report
             pass
         elif choice == 5: # Exit
@@ -130,13 +130,13 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
     print(f"\nMembership {membership} selected") # Visual
     print(f"This ticket will last {duration}!")
     print(f"Cost: ${cost}")
-    quick_choice1 = str_input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
+    quick_choice1 = input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
     if quick_choice1 == "yes":
         cs()
         print(f"Buying {membership} ticket") # Buying Ticket
         creditcard = int_input("Enter credit card number, with no spaces (1234123412341234): ") # Getting money
         cvv = int_input("Enter CVV number, with no spaces (123): ")
-        quick_choice2 = str_input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
+        quick_choice2 = input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
         if quick_choice2 == "yes":
             print("\nTicket Bought!\n")
             id += 1
@@ -160,7 +160,29 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
     ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv]
     tickets.append(ticketlist)
     
+def ticket_information(): # Prints out ticket information (anyone change this if you want and its a good idea no stupid stuff)
+    cs()
+    print(f"""
+TICKET INFORMATION
 
+Membership Levels:
+    NPC ($19.99)
+The most basic pass, provides you with all concerts/artist shows in public seating
+    VIP ($49.99)
+The 2nd best pass, gives you a special fast lane in all lines and VIP seating zone, plus you get to meet an artist
+    MVP ($99.99)
+THE BEST pass you can buy, gives extremely fast lines and 50% off everything in the convention, meet all artists/performers and free merch + candy + 1 meal/day
+          
+Duration Levels:
+    1 Day: 1 day in the convention from 7:00am to 10:00pm
+    3 Day: 3 days in the convention from 7:00am to 10:00pm (2 overnights)
+    1 Week: 7 days in the convention from 7:00am to 10:00pm (6 overnights)
+    1 Month: 30 days in the convention from 7:00am to 10:00pm (29 overnights)
+    Season Pass: Full season access to the convention any time, 1 free meal a day (stackable with MVP)
+
+Your information is kept in a secure online server with {random.randint(1,1000)} firewalls protecting it RIGHT NOW
+          """)   
+    input('Press enter to continue')
 
 
         
