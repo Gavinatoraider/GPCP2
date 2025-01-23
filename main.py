@@ -1,5 +1,9 @@
 # Jackson Hauley, Gavin Pierce, Lizzy Saldana, Luke Murdock
 
+password = ("MusicFestival1234")
+
+num_of_preformences=(15)
+
 import random
 import time
 
@@ -219,5 +223,12 @@ def edit_artist(change_type): #
     pass
 
 # Running Code
+
+
+
+#adds band to schedale
+def add_song():
+    print()
+pass
 
 main()
