@@ -102,25 +102,25 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
             print("Invalid Input (1-3)")
             input("Press enter to continue")
     while True:
-        duration_choice = int_input("\nHow long do you want this ticket to work?\n1. 1 day\n2. 3 days\n3. 1 week\n4. 1 month\n5. season pass\n\nType number here (1-5): ") # Duration Selection
+        duration_choice = int_input("\nHow long do you want this ticket to work?\n1. 1 day\n2. 3 days\n3. 1 week\n4. 1 month\n5. Season pass\n\nType number here (1-5): ") # Duration Selection
         if duration_choice == 1: # These are for how long your ticket works
-            duration = "1 day" # 1 day duration
+            duration = "1 Day" # 1 day duration
             cost += 0
             break
         elif duration_choice == 2:
-            duration = "3 days" # 3 days duration
+            duration = "3 Days" # 3 days duration
             cost += 40
             break
         elif duration_choice == 3:
-            duration = "1 week" # 1 week duration
+            duration = "1 Week" # 1 week duration
             cost += 80
             break
         elif duration_choice == 4:
-            duration = "1 month"  # 1 month duration
+            duration = "1 Month"  # 1 month duration
             cost += 120
             break
         elif duration_choice == 5:
-            duration = "season pass" # season pass
+            duration = "Season Pass" # season pass
             cost += 300
             break
         else:
@@ -142,14 +142,14 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
             id += 1
             print(f"Ticket ID: {id}")
             print(f"""
-████████████████████████████████████████████████
-█   WMWMW   | Name: {firstname:<15} {lastname:<15} █
-█  /     \\  | Age: {age:<5}                      █
-█  |O   O|  | Membership Level: {membership:<5}   █
-█  |  L  |  | Date Bought: {time.ctime():<20}      █
-█   \ W /   | Duration: {duration:<15}             █
-█    | |    | ID: {id:<10}                         █
-████████████████████████████████████████████████""") # Printing out their ticket
+██████████████████████████████████████████████████████
+█   WMWMW   █ Name: {firstname} {lastname}
+█  /     \\  █ Age: {age}                   
+█  |O   O|  █ Membership Level: {membership}   
+█  |  L  |  █ Date Bought: {time.ctime()}  
+█   \ W /   █ Duration: {duration}         
+█    | |    █ ID: {id}                     
+██████████████████████████████████████████████████████""") # Printing out their ticket
             input("Press enter to continue")
         else:
             print("Ticket Canceled!")
@@ -157,6 +157,8 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
     else:
         print("Ticket Canceled!")
         input("Press enter to continue")
+    ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv]
+    tickets.append(ticketlist)
     
 
 
