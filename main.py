@@ -20,7 +20,7 @@ tickets = []
 id = 0
 female_ratio = 0
 male_ratio = 0
-tickets_bought = []
+tickets_bought = 0
 total_money = 0
 memberships_bought = []
 durations_bought = []
@@ -178,8 +178,8 @@ def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a t
     lastname = input("What is your last name?: ")
     age = int_input("How old are you?: ") # Age Selection
     if 120 < age or age < 0:
-        randage = random.randint(1,10)
-        print(f"Bro there is no way your that age, I bet your {randage}") # Dissing on people who are joking around
+        randage = random.randint(1,random.randint(10,random.randint(11,18)))
+        print(f"\nBro there is no way your that age, I bet your {randage}") # Dissing on people who are joking around
         age = randage
     while True:
         gender_choice = input("Male or Female? (m/f): ") # chooses gender
