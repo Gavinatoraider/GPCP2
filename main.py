@@ -320,16 +320,18 @@ Your information is kept in a secure online server with {random.randint(1,1000)}
 def artist_main(): # 
     while True:
         cs()
-        choice = int_input("\nArtist List Management\n\n1. Display\n2. Add\n3. Remove\n4. Edit\n5. Exit\n")
+        choice = int_input("\nArtist List Management\n\n1. Display\n2. Search\n3. Add\n4. Remove\n5. Edit\n6. Exit\n")
         if choice == 1:
-            print(f"Artist List: {artist_list}")
+            print(f"\nArtist List: {artist_list}\nClick Enter to Continue")
             input()
         elif choice == 2:
-            add_artist()
+            search_artist()
         elif choice == 3:
-            remove_artist()
+            add_artist()
         elif choice == 4:
-            edit_artist(int_input("What do you want changed?\nName(1) Genre(2) Time(3)\n"))
+            remove_artist()
+        elif choice == 5:
+            edit_artist()
         else:
             break
 
@@ -349,14 +351,22 @@ def remove_artist(): #
         if artist_name == artist[0]:
             artist_list.remove(artist)
 
-def edit_artist(change_type): #
+def edit_artist(): #
+    edited = 0
     print("Editing An Artist")
     artist_name = str_input("What is the artist's name?:\n")
+    change_type = int_input("What do you want changed?\nName(1) Genre(2) Time(3)\n") -1
     new_text = str_input("What do you want it changed to?:\n")
 
-    for artist in artist_list:
-        if artist_name == artist[0]:
-            artist_list[change_type] = new_text
+    for artist_num, artist in enumerate(artist_list):
+        if artist_name.title() == artist[0].title():
+            artist_list[artist_num][change_type] = new_text
+            edited = 1
+    if edited == 0:
+        print("")
+
+def search_artist():
+
 
 
 # Gavins code
