@@ -82,7 +82,7 @@ def cs(): # Clear Screen
 def ticket_main(): # Ticket main function (runs all ticket information through here) ((jacksons function))
     while True:
         cs()
-        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Informatoin\n4. Ticket Sales Report\n5. Exit\n\nChoose one (1-5): ")
+        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Informatoin\n4. Ticket Sales Report\n5. Generate Random People\n6. Exit\n\nChoose one (1-6): ")
         if choice == 1: # Buy Ticket
             buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
         elif choice == 2: # Search Tickets
@@ -91,8 +91,30 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
             ticket_information()
         elif choice == 4: # Ticket Sales Report
             ticket_report()
-        elif choice == 5: # Exit
+        elif choice == 5: # Random People Generator
+            gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
+        elif choice == 6: # Exit
             main()
+
+def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Random Ticket Generator
+    cs()
+    amount = int_input("How many tickets do you want to generate?: ")
+    for x in range(amount):
+        firstname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
+        lastname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
+        age = random.choice(list(range(1,120)))
+        membership = random.choice(["NPC","VIP","MVP"])
+        duration = random.choice(["1 Day","3 Day","1 Week","1 Month","Season Pass"])
+        cost = random.randint(100,400)
+        id += 1
+        creditcard = random.randint(1000000000000000,9999999999999999)
+        cvv = random.randint(100,999)
+        ticket_time = time.ctime()
+        gender = random.choice(["Male","Female"])
+        ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
+        tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
+        print(f"Ticket Created! [ID: {id}]")
+    input("\n FINISHED GENERATING\nPress enter to continue")
 
 def search_tickets(): # Search tickets 
     cs()
