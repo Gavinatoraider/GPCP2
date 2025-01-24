@@ -100,8 +100,8 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
     cs()
     amount = int_input("How many tickets do you want to generate?: ")
     for x in range(amount):
-        firstname = random.choice(["Jackson","Gavin","Nicole","Luke',"Lizzy","Hauley","Saldana","Murdock","Pierce"])
-        lastname = random.choice(["Jackson","Gavin","Nicole","Luke',"Lizzy","Hauley","Saldana","Murdock","Pierce"])
+        firstname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
+        lastname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
         age = random.choice(list(range(1,120)))
         membership = random.choice(["NPC","VIP","MVP"])
         duration = random.choice(["1 Day","3 Day","1 Week","1 Month","Season Pass"])
