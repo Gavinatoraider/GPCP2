@@ -1,6 +1,11 @@
 # Jackson Hauley, Gavin Pierce, Lizzy Saldana, Luke Murdock
 
+artist_scheduale= []
+
 password = ("MusicFestival1234")
+password_attepmt = 3
+
+loop_num=0
 
 num_of_preformences=(15)
 
@@ -9,17 +14,8 @@ import time
 
 # Initializing Variables
 artist_list = []
-
-# Jacksons Variables 
 tickets = []
 id = 0
-total_money = 0
-tickets_bought = 0
-memberships_bought = []
-male_ratio = 0
-female_ratio = 0
-age_list = []
-durations_bought = []
 
 
 # Defining Funcitons
@@ -99,15 +95,15 @@ def search_tickets(): # Search tickets
         for i in tickets[x]:
             if i == search_keyword:
                 print(f"Name: {tickets[x][0]} {tickets[x][1]}   ID: {tickets[x][6]}")
-    search_ID = int_input("\nWhich ticket do you want to open? (ID) (type 0 for exit): ")
+    search_ID = int_input("\nWhich ticket do you want to open? (ID): ")
     print()
-    for x in range(len(tickets)):
+    for x in tickets:
         if tickets[x][6] == search_ID:
             if tickets[x][10] == "Male":
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
-    █  /     \\  █ Age: {tickets[x][2]} | Gender: {tickets[x][10]}                 
+    █  /     \\  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                 
     █  |O   O|  █ Membership Level: {tickets[x][3]}   
     █  |  L  |  █ Date Bought: {tickets[x][9]}  
     █   \ U /   █ Duration: {tickets[x][4]}         
@@ -117,15 +113,15 @@ def search_tickets(): # Search tickets
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
-    █  W     W  █ Age: {tickets[x][2]} | Gender: {tickets[x][10]}                 
+    █  W     W  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                 
     █ W|O   O|W █ Membership Level: {tickets[x][3]}   
     █ M|  L  |M █ Date Bought: {tickets[x][9]}  
     █   \ U /   █ Duration: {tickets[x][4]}         
     █    | |    █ ID: {tickets[x][6]}                     
     ██████████████████████████████████████████████████████""") # Printing out their ticket
-            print(f"\nCost: ${tickets[x][5]}")
-            print(f"Credit Card: {tickets[x][7]}")
-            print(f"CVV: {tickets[x][8]}\n")
+            print(f"Cost: ${tickets[x][5]}")
+            print(f"Credit Card: ${tickets[x][7]}")
+            print(f"CVV: ${tickets[x][8]}")
             input("Press enter to continue")
             break
 
@@ -165,9 +161,10 @@ Average Age: {round(sum(age_list)/len(age_list),2)}
           """)   # The report is being worked on
     input('Press enter to continue')
 
+
 def buy_ticket(): # Buy a ticket (Jacksons Function)
-    global id,total_money,tickets_bought,memberships_bought,male_ratio,female_ratio,age_list,durations_bought
-    ticket = [] # This is what gets added to the tickets list at the end
+    global id
+    ticket = []
     cs()
     print("Buying Ticket\n") # Visual
     firstname = input("What is your first name?: ") # Name Input
@@ -259,7 +256,7 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {firstname} {lastname}
-    █  /     \\  █ Age: {age} | Gender: {gender}             
+    █  /     \\  █ Age: {age} Gender: {gender}             
     █  |O   O|  █ Membership Level: {membership}   
     █  |  L  |  █ Date Bought: {ticket_time}  
     █   \ W /   █ Duration: {duration}         
@@ -269,7 +266,7 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {firstname} {lastname}
-    █  W     W  █ Age: {age} | Gender: {gender}                 
+    █  W     W  █ Age: {age} Gender: {gender}                 
     █ W|O   O|W █ Membership Level: {membership}  
     █ M|  L  |M █ Date Bought: {ticket_time}  
     █   \ U /   █ Duration: {duration}         
@@ -369,14 +366,32 @@ def search_artist():
 
 
 
-# Gavins code
+#Gavins code
 
-# adds band to schedale
-song_list = []
-def add_song():
-    song_name=input("what is the name of the song")
-    print()
-pass
+#the schedule
+
+#adds people to schedule
+
+def schedule_add():
+    artist_add=input("what is the artist's name?")
+    artist_scheduale.append(artist_add)
+    loop_num+=1
+    print(artist_list)
+
+#removes from schedule
+
+def schedule_remove():
+    verifide=input("what is the password?")
+    if verifide== password:
+        artist_remove=input("what is the artist's name that you would like to remove")
+        artist_scheduale.remove(artist_remove)
+        loopnum-=1
+        print(artist_list)
+    else:
+        print("that is incorect")
+
+
+#changes
 
 # Running the Code
 main()
