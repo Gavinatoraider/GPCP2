@@ -84,7 +84,7 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
         cs()
         choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Informatoin\n4. Ticket Sales Report\n5. Exit\n\nChoose one (1-5): ")
         if choice == 1: # Buy Ticket
-            buy_ticket()
+            buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
         elif choice == 2: # Search Tickets
             search_tickets()
         elif choice == 3: # Ticket Informatoin
@@ -170,7 +170,7 @@ Average Age: {round(sum(age_list)/len(age_list),2)}
     input('Press enter to continue')
 
 
-def buy_ticket(): # Buy a ticket (Jacksons Function)
+def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a ticket (Jacksons Function)
     ticket = []
     cs()
     print("Buying Ticket\n") # Visual
