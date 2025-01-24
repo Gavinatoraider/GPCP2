@@ -73,7 +73,7 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
         if choice == 1: # Buy Ticket
             buy_ticket()
         elif choice == 2: # Search Tickets
-            pass
+            search_tickets()
         elif choice == 3: # Ticket Informatoin
             ticket_information()
         elif choice == 4: # Ticket Sales Report
@@ -84,7 +84,7 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
 def search_tickets(): # Search tickets 
     cs()
     print("Search All Tickets")
-    search_keyword = input("Enter any keyword or ID to try and find a ticket: ") # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME
+    search_keyword = input("Enter any keyword or ID to try and find a ticket: ") # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME,gender
     print()
     for x in range(len(tickets)):
         for i in tickets[x]:
@@ -94,15 +94,26 @@ def search_tickets(): # Search tickets
     print()
     for x in tickets:
         if tickets[x][6] == search_ID:
-            print(f"""
-██████████████████████████████████████████████████████
-█   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
-█  /     \\  █ Age: {tickets[x][2]}                   
-█  |O   O|  █ Membership Level: {tickets[x][3]}   
-█  |  L  |  █ Date Bought: {tickets[x][9]}  
-█   \ W /   █ Duration: {tickets[x][4]}         
-█    | |    █ ID: {tickets[x][6]}                     
-██████████████████████████████████████████████████████""") # Printing out their ticket
+            if tickets[x][10] == "Male":
+                print(f"""
+    ██████████████████████████████████████████████████████
+    █   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
+    █  /     \\  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                 
+    █  |O   O|  █ Membership Level: {tickets[x][3]}   
+    █  |  L  |  █ Date Bought: {tickets[x][9]}  
+    █   \ U /   █ Duration: {tickets[x][4]}         
+    █    | |    █ ID: {tickets[x][6]}                     
+    ██████████████████████████████████████████████████████""") # Printing out their ticket
+            else:
+                print(f"""
+    ██████████████████████████████████████████████████████
+    █   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
+    █  W     W  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                 
+    █ W|O   O|W █ Membership Level: {tickets[x][3]}   
+    █ M|  L  |M █ Date Bought: {tickets[x][9]}  
+    █   \ U /   █ Duration: {tickets[x][4]}         
+    █    | |    █ ID: {tickets[x][6]}                     
+    ██████████████████████████████████████████████████████""") # Printing out their ticket
             print(f"Cost: ${tickets[x][5]}")
             print(f"Credit Card: ${tickets[x][7]}")
             print(f"CVV: ${tickets[x][8]}")
@@ -125,6 +136,17 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
         randage = random.randint(1,10)
         print(f"Bro there is no way your that age, I bet your {randage}") # Dissing on people who are joking around
         age = randage
+    while True:
+        gender_choice = input("Male or Female? (m/f): ") # chooses gender
+        if gender_choice.lower()  == "m":
+            gender = "Male"
+            break
+        elif gender_choice.lower() == "f":
+            gender = "Female"
+            break
+        else:
+            print("Invalid Input (m/f)")
+            input("Press enter to continue")
     while True:
         membership_choice = int_input("\nWhat membership level do you want to buy?\n1. NPC ($19.99)\n2. VIP ($49.99)\n3. MVP ($99.99)\n\nType number here (1-3): ") # Membership Level Selection
         if membership_choice == 1:
@@ -183,24 +205,35 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
             id += 1
             print(f"Ticket ID: {id}")
             ticket_time = time.ctime()
-            print(f"""
-██████████████████████████████████████████████████████
-█   WMWMW   █ Name: {firstname} {lastname}
-█  /     \\  █ Age: {age}                   
-█  |O   O|  █ Membership Level: {membership}   
-█  |  L  |  █ Date Bought: {ticket_time}  
-█   \ W /   █ Duration: {duration}         
-█    | |    █ ID: {id}                     
-██████████████████████████████████████████████████████""") # Printing out their ticket
-            input("Press enter to continue")
+            if gender == "Male":
+                print(f"""
+    ██████████████████████████████████████████████████████
+    █   WMWMW   █ Name: {firstname} {lastname}
+    █  /     \\  █ Age: {age} Gender: {gender}             
+    █  |O   O|  █ Membership Level: {membership}   
+    █  |  L  |  █ Date Bought: {ticket_time}  
+    █   \ W /   █ Duration: {duration}         
+    █    | |    █ ID: {id}                     
+    ██████████████████████████████████████████████████████""") # Printing out their ticket
+            else:
+                print(f"""
+    ██████████████████████████████████████████████████████
+    █   WMWMW   █ Name: {firstname} {lastname}
+    █  W     W  █ Age: {age} Gender: {gender}                 
+    █ W|O   O|W █ Membership Level: {membership}  
+    █ M|  L  |M █ Date Bought: {ticket_time}  
+    █   \ U /   █ Duration: {duration}         
+    █    | |    █ ID: {id}                     
+    ██████████████████████████████████████████████████████""") # Printing out their ticket
+            input("\nPress enter to continue")
         else:
             print("Ticket Canceled!")
             input("Press enter to continue")
     else:
         print("Ticket Canceled!")
         input("Press enter to continue")
-    ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time]
-    tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME
+    ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
+    tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
     
 def ticket_information(): # Prints out ticket information (anyone change this if you want and its a good idea no stupid stuff)
     cs()
