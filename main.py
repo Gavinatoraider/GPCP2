@@ -90,15 +90,15 @@ def search_tickets(): # Search tickets
         for i in tickets[x]:
             if i == search_keyword:
                 print(f"Name: {tickets[x][0]} {tickets[x][1]}   ID: {tickets[x][6]}")
-    search_ID = int_input("\nWhich ticket do you want to open? (ID): ")
+    search_ID = int_input("\nWhich ticket do you want to open? (ID) (type 0 for exit): ")
     print()
-    for x in tickets:
+    for x in range(len(tickets)):
         if tickets[x][6] == search_ID:
             if tickets[x][10] == "Male":
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
-    █  /     \\  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                 
+    █  /     \\  █ Age: {tickets[x][2]} | Gender: {tickets[x][10]}                 
     █  |O   O|  █ Membership Level: {tickets[x][3]}   
     █  |  L  |  █ Date Bought: {tickets[x][9]}  
     █   \ U /   █ Duration: {tickets[x][4]}         
@@ -108,15 +108,15 @@ def search_tickets(): # Search tickets
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
-    █  W     W  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                 
+    █  W     W  █ Age: {tickets[x][2]} | Gender: {tickets[x][10]}                 
     █ W|O   O|W █ Membership Level: {tickets[x][3]}   
     █ M|  L  |M █ Date Bought: {tickets[x][9]}  
     █   \ U /   █ Duration: {tickets[x][4]}         
     █    | |    █ ID: {tickets[x][6]}                     
     ██████████████████████████████████████████████████████""") # Printing out their ticket
-            print(f"Cost: ${tickets[x][5]}")
-            print(f"Credit Card: ${tickets[x][7]}")
-            print(f"CVV: ${tickets[x][8]}")
+            print(f"\nCost: ${tickets[x][5]}")
+            print(f"Credit Card: {tickets[x][7]}")
+            print(f"CVV: {tickets[x][8]}\n")
             input("Press enter to continue")
             break
 
@@ -209,7 +209,7 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {firstname} {lastname}
-    █  /     \\  █ Age: {age} Gender: {gender}             
+    █  /     \\  █ Age: {age} | Gender: {gender}             
     █  |O   O|  █ Membership Level: {membership}   
     █  |  L  |  █ Date Bought: {ticket_time}  
     █   \ W /   █ Duration: {duration}         
@@ -219,7 +219,7 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {firstname} {lastname}
-    █  W     W  █ Age: {age} Gender: {gender}                 
+    █  W     W  █ Age: {age} | Gender: {gender}                 
     █ W|O   O|W █ Membership Level: {membership}  
     █ M|  L  |M █ Date Bought: {ticket_time}  
     █   \ U /   █ Duration: {duration}         
