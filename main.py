@@ -9,8 +9,17 @@ import time
 
 # Initializing Variables
 artist_list = []
+
+# Jacksons Variables 
 tickets = []
 id = 0
+total_money = 0
+tickets_bought = 0
+memberships_bought = []
+male_ratio = 0
+female_ratio = 0
+age_list = []
+durations_bought = []
 
 
 # Defining Funcitons
@@ -122,11 +131,22 @@ def search_tickets(): # Search tickets
 
 
 def ticket_report(): # Ticket report 
-    pass
+    cs()
+    print(f"""
+TICKET REPORT
+          
+Total tickets bought: {tickets_bought}
+
+Genders:
+%{round(male_ratio/(female_ratio+male_ratio))} Male
+%{round(female_ratio/(female_ratio+male_ratio))} Female
+
+          """)   # The report is being worked on
+    input('Press enter to continue')
 
 def buy_ticket(): # Buy a ticket (Jacksons Function)
-    global id
-    ticket = []
+    global id,total_money,tickets_bought,memberships_bought,male_ratio,female_ratio,age_list,durations_bought
+    ticket = [] # This is what gets added to the tickets list at the end
     cs()
     print("Buying Ticket\n") # Visual
     firstname = input("What is your first name?: ") # Name Input
@@ -202,6 +222,15 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
         quick_choice2 = input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
         if quick_choice2 == "yes":
             print("\nTicket Bought!\n")
+            total_money += cost # All these variables are updating stuff for the report
+            tickets_bought += 1
+            memberships_bought.append(membership)
+            if gender == "Male":
+                male_ratio += 1
+            else:
+                female_ratio += 1
+            age_list.append(age)
+            durations_bought += duration
             id += 1
             print(f"Ticket ID: {id}")
             ticket_time = time.ctime()
@@ -309,9 +338,9 @@ def edit_artist(change_type): #
 
 # Running Code
 
-#Gavins code
+# Gavins code
 
-#adds band to schedale
+# adds band to schedale
 song_list = []
 def add_song():
     song_name=input("what is the name of the song")
