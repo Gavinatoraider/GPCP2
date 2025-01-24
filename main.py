@@ -86,7 +86,7 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
         elif choice == 3: # Ticket Informatoin
             ticket_information()
         elif choice == 4: # Ticket Sales Report
-            pass
+            ticket_report()
         elif choice == 5: # Exit
             main()
 
@@ -132,15 +132,36 @@ def search_tickets(): # Search tickets
 
 def ticket_report(): # Ticket report 
     cs()
+    total_ratio = male_ratio + female_ratio # Calculates percentage of female/male people who bought tickets
+    male_percentage = (male_ratio / total_ratio) 
+    female_percentage = (female_ratio / total_ratio)
+    if total_ratio == 0:
+        male_percentage = 0
+        female_percentage = 0
     print(f"""
 TICKET REPORT
           
 Total tickets bought: {tickets_bought}
 
 Genders:
-%{round(male_ratio/(female_ratio+male_ratio))} Male
-%{round(female_ratio/(female_ratio+male_ratio))} Female
+{male_percentage:.2%} Male
+{female_percentage:.2%} Female
 
+Total Money Earned: ${total_money}
+
+Memberships Bought:
+NPC: {memberships_bought.count("NPC")}
+VIP: {memberships_bought.count("VIP")}
+MVP: {memberships_bought.count("MVP")}
+
+Durations Bought:
+1 Day: {durations_bought.count("1 Day")}
+3 Days: {durations_bought.count("3 Day")}
+1 Week: {durations_bought.count("1 Week")}
+1 Month: {durations_bought.count("1 Month")}
+Season Pass: {durations_bought.count("Season Pass")}
+
+Average Age: {round(sum(age_list)/len(age_list),2)}
           """)   # The report is being worked on
     input('Press enter to continue')
 
@@ -230,7 +251,7 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
             else:
                 female_ratio += 1
             age_list.append(age)
-            durations_bought += duration
+            durations_bought.append(duration)
             id += 1
             print(f"Ticket ID: {id}")
             ticket_time = time.ctime()
@@ -255,14 +276,15 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
     █    | |    █ ID: {id}                     
     ██████████████████████████████████████████████████████""") # Printing out their ticket
             input("\nPress enter to continue")
+            ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
+            tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
         else:
             print("Ticket Canceled!")
             input("Press enter to continue")
     else:
         print("Ticket Canceled!")
         input("Press enter to continue")
-    ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
-    tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
+    
     
 def ticket_information(): # Prints out ticket information (anyone change this if you want and its a good idea no stupid stuff)
     cs()
@@ -336,7 +358,6 @@ def edit_artist(change_type): #
         if artist_name == artist[0]:
             artist_list[change_type] = new_text
 
-# Running Code
 
 # Gavins code
 
@@ -347,4 +368,5 @@ def add_song():
     print()
 pass
 
+# Running the Code
 main()
