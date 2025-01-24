@@ -309,10 +309,12 @@ def edit_artist(change_type): #
 
 # Running Code
 
-
+#Gavins code
 
 #adds band to schedale
+song_list = []
 def add_song():
+    song_name=input("what is the name of the song")
     print()
 pass
 
