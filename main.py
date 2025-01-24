@@ -396,32 +396,41 @@ def search_artist():
 
 
 
-#Gavins code
+# Gavins code
 
-#the schedule
+# the schedule
 
-#adds people to schedule
-
+# adds people to schedule
 def schedule_add():
     artist_add=input("what is the artist's name?")
     artist_scheduale.append(artist_add)
     loop_num+=1
     print(artist_list)
 
-#removes from schedule
-
+# removes from schedule
 def schedule_remove():
-    verifide=input("what is the password?")
-    if verifide== password:
-        artist_remove=input("what is the artist's name that you would like to remove")
-        artist_scheduale.remove(artist_remove)
-        loopnum-=1
-        print(artist_list)
-    else:
-        print("that is incorect")
+    while password_attepmt <=0:
+        verifide=input("what is the password?")
+        if verifide== password:
+            artist_remove=input("what is the artist's name that you would like to remove")
+            artist_scheduale.remove(artist_remove)
+            loopnum-=1
+            print(artist_list)
+            break
+        else:
+            print("that is incorect")
+            password_attepmt-=1
 
-
-#changes
+# changes schedule
+def schedule_change():
+    while password_attepmt <=0:
+        verifide=input("what is the password?")
+        if verifide== password:
+            artist_change=("what is the artist that you would like to change?")
+            break
+        else:
+            print("that is incorect")
+            password_attepmt-=1
 
 # Running the Code
 main()
