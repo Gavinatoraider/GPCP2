@@ -14,9 +14,17 @@ import time
 
 # Initializing Variables
 artist_list = []
+
+# Jacksons Variables
 tickets = []
 id = 0
-
+female_ratio = 0
+male_ratio = 0
+tickets_bought = []
+total_money = 0
+memberships_bought = []
+durations_bought = []
+age_list = []
 
 # Defining Funcitons
 
@@ -163,7 +171,6 @@ Average Age: {round(sum(age_list)/len(age_list),2)}
 
 
 def buy_ticket(): # Buy a ticket (Jacksons Function)
-    global id
     ticket = []
     cs()
     print("Buying Ticket\n") # Visual
@@ -363,6 +370,7 @@ def edit_artist(): #
         print("")
 
 def search_artist():
+    pass
 
 
 
