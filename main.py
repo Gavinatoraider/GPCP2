@@ -392,7 +392,21 @@ def edit_artist(): #
         print("")
 
 def search_artist():
-    pass
+    while True:
+        searched = 0
+        artist_results = []
+        print("Searching For An Artist")
+        artist_search = str_input("Search for the artist's name, genre, time?:\n")
+        for artist in artist_list:
+            for fact in artist:
+                if artist_search.upper() in fact.upper():
+                    artist_results.append(artist)
+                    searched = 1
+        if searched == 0:
+            print("Not in List")
+            continue
+        break
+
 
 
 
