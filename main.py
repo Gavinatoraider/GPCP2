@@ -82,7 +82,7 @@ def cs(): # Clear Screen
 def ticket_main(): # Ticket main function (runs all ticket information through here) ((jacksons function))
     while True:
         cs()
-        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Information\n4. Ticket Sales Report\n5. Generate Random People\n6. Exit\n\nChoose one (1-6): ")
+        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Information\n4. Ticket Sales Report\n5. Generate Random Tickets\n6. Exit\n\nChoose one (1-6): ")
         if choice == 1: # Buy Ticket
             buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
         elif choice == 2: # Search Tickets
@@ -106,12 +106,17 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
         age = random.choice(list(range(1,120)))
         membership = random.choice(["NPC","VIP","MVP"])
         duration = random.choice(["1 Day","3 Day","1 Week","1 Month","Season Pass"])
+        getcost(membership,duration)
         cost = random.randint(100,400)
         id += 1
-        creditcard = random.randint(1000000000000000,9999999999999999)
+        creditcard = random.randint(1000000000000000,9999999999999999) # Random Credit Card
         cvv = random.randint(100,999)
         ticket_time = time.ctime()
         gender = random.choice(["Male","Female"])
+        if gender == "Male": # Changing ratio
+            male_ratio += 1
+        else:
+            female_ratio += 1
         ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
         tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
         print(f"Ticket Created! [ID: {id}]")
@@ -120,13 +125,13 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
 def search_tickets(): # Search tickets 
     cs()
     print("Search All Tickets")
-    search_keyword = input("Enter any keyword or ID to try and find a ticket: ") # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME,gender
+    search_keyword = input("Enter any keyword or ID to try and find a ticket (case sensitive): ") # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME,gender
     print()
     for x in range(len(tickets)):
         for i in tickets[x]:
-            if i == search_keyword:
+            if str(i) == search_keyword:
                 print(f"Name: {tickets[x][0]} {tickets[x][1]}   ID: {tickets[x][6]}")
-    search_ID = int_input("\nWhich ticket do you want to open? (ID): ")
+    search_ID = int_input("\nWhich ticket do you want to open? (ID) (type 0 to exit): ")
     print()
     for x in range(len(tickets)):
         if tickets[x][6] == search_ID:
@@ -156,12 +161,31 @@ def search_tickets(): # Search tickets
             input("Press enter to continue")
             break
 
+def getcost(membership,duration):
+    if membership == "NPC":
+        cost = 19.99
+    elif membership == "VIP":
+        cost = 49.99
+    elif membership == "MVP":
+        cost = 99.99
+    if duration == "1 Day": 
+        cost += 0
+    elif duration == "3 Days":
+        cost += 40
+    elif duration == "1 Week":
+        cost += 80
+    elif duration == "1 Month":
+        cost += 120
+    elif duration == "Season Pass":
+        cost += 300
+    return cost
 
 def ticket_report(): # Ticket report 
     cs()
     total_ratio = male_ratio + female_ratio # Calculates percentage of female/male people who bought tickets
-    male_percentage = (male_ratio / total_ratio) 
-    female_percentage = (female_ratio / total_ratio)
+    if total_ratio != 0:
+        male_percentage = (male_ratio / total_ratio) # Handling dividing by 0
+        female_percentage = (female_ratio / total_ratio)
     if total_ratio == 0:
         male_percentage = 0
         female_percentage = 0
@@ -219,15 +243,12 @@ def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a t
         membership_choice = int_input("\nWhat membership level do you want to buy?\n1. NPC ($19.99)\n2. VIP ($49.99)\n3. MVP ($99.99)\n\nType number here (1-3): ") # Membership Level Selection
         if membership_choice == 1:
             membership = 'NPC' # NPC membership setting
-            cost = 19.99
             break
         elif membership_choice == 2:
             membership = 'VIP' # VIP membership setting
-            cost = 49.99
             break
         elif membership_choice == 3:
             membership = 'MVP' # MVP membership setting
-            cost = 99.99
             break
         else:
             print("Invalid Input (1-3)")
@@ -236,23 +257,18 @@ def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a t
         duration_choice = int_input("\nHow long do you want this ticket to work?\n1. 1 day (+$0.00)\n2. 3 days (+$40.00)\n3. 1 week (+$80.00)\n4. 1 month (+$120.00)\n5. Season pass (+$300.00)\n\nType number here (1-5): ") # Duration Selection
         if duration_choice == 1: # These are for how long your ticket works
             duration = "1 Day" # 1 day duration
-            cost += 0
             break
         elif duration_choice == 2:
             duration = "3 Days" # 3 days duration
-            cost += 40
             break
         elif duration_choice == 3:
             duration = "1 Week" # 1 week duration
-            cost += 80
             break
         elif duration_choice == 4:
             duration = "1 Month"  # 1 month duration
-            cost += 120
             break
         elif duration_choice == 5:
             duration = "Season Pass" # season pass
-            cost += 300
             break
         else:
             print("Invalid Input (1-3)") # Error Handling
@@ -260,7 +276,8 @@ def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a t
 
     print(f"\nMembership {membership} selected") # Visual
     print(f"This ticket will last {duration}!")
-    print(f"Cost: ${cost}")
+    print(f"Cost: ${getcost(membership,duration)}")
+    cost = getcost(membership,duration)
     quick_choice1 = input("\nType yes to confirm, anything else will cancel: ") # Confirming Information
     if quick_choice1 == "yes":
         cs()
