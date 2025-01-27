@@ -448,6 +448,7 @@ def schedule_add():
 
 # removes from schedule
 def schedule_remove():
+    password_attepmt = 0
     while password_attepmt <=0:
         verifide=input("what is the password?")
         if verifide== password:
@@ -462,6 +463,7 @@ def schedule_remove():
 
 # changes schedule
 def schedule_change():
+    password_attepmt = 0
     while password_attepmt <=0:
         verifide=input("what is the password?")
         if verifide== password:
