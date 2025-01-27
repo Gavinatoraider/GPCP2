@@ -82,7 +82,7 @@ def cs(): # Clear Screen
 def ticket_main(): # Ticket main function (runs all ticket information through here) ((jacksons function))
     while True:
         cs()
-        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Informatoin\n4. Ticket Sales Report\n5. Generate Random People\n6. Exit\n\nChoose one (1-6): ")
+        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Information\n4. Ticket Sales Report\n5. Generate Random People\n6. Exit\n\nChoose one (1-6): ")
         if choice == 1: # Buy Ticket
             buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
         elif choice == 2: # Search Tickets
@@ -99,6 +99,7 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
 def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Random Ticket Generator
     cs()
     amount = int_input("How many tickets do you want to generate?: ")
+    print()
     for x in range(amount):
         firstname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
         lastname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
@@ -114,7 +115,7 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
         ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
         tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
         print(f"Ticket Created! [ID: {id}]")
-    input("\n FINISHED GENERATING\nPress enter to continue")
+    input("\nFINISHED GENERATING\nPress enter to continue")
 
 def search_tickets(): # Search tickets 
     cs()
@@ -127,7 +128,7 @@ def search_tickets(): # Search tickets
                 print(f"Name: {tickets[x][0]} {tickets[x][1]}   ID: {tickets[x][6]}")
     search_ID = int_input("\nWhich ticket do you want to open? (ID): ")
     print()
-    for x in tickets:
+    for x in range(len(tickets)):
         if tickets[x][6] == search_ID:
             if tickets[x][10] == "Male":
                 print(f"""
@@ -149,9 +150,9 @@ def search_tickets(): # Search tickets
     █   \ U /   █ Duration: {tickets[x][4]}         
     █    | |    █ ID: {tickets[x][6]}                     
     ██████████████████████████████████████████████████████""") # Printing out their ticket
-            print(f"Cost: ${tickets[x][5]}")
-            print(f"Credit Card: ${tickets[x][7]}")
-            print(f"CVV: ${tickets[x][8]}")
+            print(f"\nCost: ${tickets[x][5]}")
+            print(f"Credit Card: {tickets[x][7]}")
+            print(f"CVV: {tickets[x][8]}")
             input("Press enter to continue")
             break
 
