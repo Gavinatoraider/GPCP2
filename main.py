@@ -370,18 +370,28 @@ def add_artist(): #
     artist_list.append([artist_name, artist_genre, artist_time])
 
 def remove_artist(): #
+    removed = 0
     print("Removing An Artist")
     artist_name = str_input("What is the artist's name?:\n")
 
     for artist in artist_list:
-        if artist_name == artist[0]:
+        if artist_name.title() == artist[0].title():
             artist_list.remove(artist)
+            removed = 1
+    if removed == 0:
+        print("Not in List\nClick Enter to Continue")
+        input()
 
 def edit_artist(): #
     edited = 0
     print("Editing An Artist")
     artist_name = str_input("What is the artist's name?:\n")
-    change_type = int_input("What do you want changed?\nName(1) Genre(2) Time(3)\n") -1
+    while True:
+        change_type = int_input("What do you want changed?\nName(1) Genre(2) Time(3)\n") -1
+        if change_type < 0 or change_type > 2:
+            print("Not in Range (1-3)")
+            continue
+        break
     new_text = str_input("What do you want it changed to?:\n")
 
     for artist_num, artist in enumerate(artist_list):
@@ -389,10 +399,21 @@ def edit_artist(): #
             artist_list[artist_num][change_type] = new_text
             edited = 1
     if edited == 0:
-        print("")
+        print("Not in List\nClick Enter to Continue")
+        input()
 
 def search_artist():
-    pass
+    artist_results = []
+    print("Searching For An Artist")
+    artist_search = str_input("Search for the artist through their name, genre, or time:\n").upper()
+    for artist in artist_list:
+        for fact in artist:
+            if artist_search in fact.upper():
+                artist_results.append(artist)
+                break
+    print(f"Results: {artist_results}\nClick Enter to Continue")
+    input()
+
 
 
 
