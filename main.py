@@ -16,6 +16,13 @@ import time
 artist_list = []
 tickets = []
 id = 0
+female_ratio = 0
+male_ratio = 0
+tickets_bought = 0
+total_money = 0
+memberships_bought = []
+durations_bought = []
+age_list = []
 
 
 # Defining Funcitons
@@ -74,7 +81,7 @@ def cs(): # Clear Screen
 def ticket_main(): # Ticket main function (runs all ticket information through here) ((jacksons function))
     while True:
         cs()
-        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Informatoin\n4. Ticket Sales Report\n5. Exit\n\nChoose one (1-5): ")
+        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Information\n4. Ticket Sales Report\n5. Generate Random People\n6. Exit\n\nChoose one (1-6): ")
         if choice == 1: # Buy Ticket
             buy_ticket()
         elif choice == 2: # Search Tickets
@@ -82,9 +89,34 @@ def ticket_main(): # Ticket main function (runs all ticket information through h
         elif choice == 3: # Ticket Informatoin
             ticket_information()
         elif choice == 4: # Ticket Sales Report
+            ticket_report()
+        elif choice == 5: # Random People Generator
+            gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
+        elif choice == 6: # Exit
             pass
         elif choice == 5: # Exit
             main()
+
+def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Random Ticket Generator
+    cs()
+    amount = int_input("How many tickets do you want to generate?: ")
+    print()
+    for x in range(amount):
+        firstname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
+        lastname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
+        age = random.choice(list(range(1,120)))
+        membership = random.choice(["NPC","VIP","MVP"])
+        duration = random.choice(["1 Day","3 Day","1 Week","1 Month","Season Pass"])
+        cost = random.randint(100,400)
+        id += 1
+        creditcard = random.randint(1000000000000000,9999999999999999)
+        cvv = random.randint(100,999)
+        ticket_time = time.ctime()
+        gender = random.choice(["Male","Female"])
+        ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
+        tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
+        print(f"Ticket Created! [ID: {id}]")
+    input("\nFINISHED GENERATING\nPress enter to continue")
 
 def search_tickets(): # Search tickets 
     cs()
@@ -97,7 +129,7 @@ def search_tickets(): # Search tickets
                 print(f"Name: {tickets[x][0]} {tickets[x][1]}   ID: {tickets[x][6]}")
     search_ID = int_input("\nWhich ticket do you want to open? (ID): ")
     print()
-    for x in tickets:
+    for x in range(len(tickets)):
         if tickets[x][6] == search_ID:
             if tickets[x][10] == "Male":
                 print(f"""
@@ -119,9 +151,9 @@ def search_tickets(): # Search tickets
     █   \ U /   █ Duration: {tickets[x][4]}         
     █    | |    █ ID: {tickets[x][6]}                     
     ██████████████████████████████████████████████████████""") # Printing out their ticket
-            print(f"Cost: ${tickets[x][5]}")
-            print(f"Credit Card: ${tickets[x][7]}")
-            print(f"CVV: ${tickets[x][8]}")
+            print(f"\nCost: ${tickets[x][5]}")
+            print(f"Credit Card: {tickets[x][7]}")
+            print(f"CVV: {tickets[x][8]}")
             input("Press enter to continue")
             break
 
@@ -138,8 +170,8 @@ def buy_ticket(): # Buy a ticket (Jacksons Function)
     lastname = input("What is your last name?: ")
     age = int_input("How old are you?: ") # Age Selection
     if 120 < age or age < 0:
-        randage = random.randint(1,10)
-        print(f"Bro there is no way your that age, I bet your {randage}") # Dissing on people who are joking around
+        randage = random.randint(1,random.randint(10,random.randint(11,18)))
+        print(f"\nBro there is no way your that age, I bet your {randage}") # Dissing on people who are joking around
         age = randage
     while True:
         gender_choice = input("Male or Female? (m/f): ") # chooses gender
@@ -296,18 +328,53 @@ def add_artist(): #
     artist_list.append([artist_name, artist_genre, artist_time])
 
 def remove_artist(): #
+    removed = 0
     print("Removing An Artist")
     artist_name = str_input("What is the artist's name?:\n")
 
     for artist in artist_list:
-        if artist_name == artist[0]:
+        if artist_name.title() == artist[0].title():
             artist_list.remove(artist)
+            removed = 1
+    if removed == 0:
+        print("Not in List\nClick Enter to Continue")
+        input()
 
 def edit_artist(change_type): #
     print("Editing An Artist")
     artist_name = str_input("What is the artist's name?:\n")
+    while True:
+        change_type = int_input("What do you want changed?\nName(1) Genre(2) Time(3)\n") -1
+        if change_type < 0 or change_type > 2:
+            print("Not in Range (1-3)")
+            continue
+        break
     new_text = str_input("What do you want it changed to?:\n")
 
+    for artist_num, artist in enumerate(artist_list):
+        if artist_name.title() == artist[0].title():
+            artist_list[artist_num][change_type] = new_text
+            edited = 1
+    if edited == 0:
+        print("Not in List\nClick Enter to Continue")
+        input()
+
+def search_artist():
+    artist_results = []
+    print("Searching For An Artist")
+    artist_search = str_input("Search for the artist through their name, genre, or time:\n").upper()
+    for artist in artist_list:
+        for fact in artist:
+            if artist_search in fact.upper():
+                artist_results.append(artist)
+                break
+    print(f"Results: {artist_results}\nClick Enter to Continue")
+    input()
+
+
+
+
+# Gavins code
     for artist in artist_list:
         if artist_name == artist[0]:
             artist_list[change_type] = new_text
@@ -316,20 +383,41 @@ def edit_artist(change_type): #
 
 #Gavins code
 
+# the schedule
 #the schedaul
 
 
-#adds people to schedule
-
+# adds people to schedule
 def schedule_add():
     artist_add=input("what is the artist's name?")
     artist_scheduale.append(artist_add)
     loop_num+=1
     print(artist_list)
 
-#removes from schedule
-
+# removes from schedule
 def schedule_remove():
+    while password_attepmt <=0:
+        verifide=input("what is the password?")
+        if verifide== password:
+            artist_remove=input("what is the artist's name that you would like to remove")
+            artist_scheduale.remove(artist_remove)
+            loopnum-=1
+            print(artist_list)
+            break
+        else:
+            print("that is incorect")
+            password_attepmt-=1
+
+# changes schedule
+def schedule_change():
+    while password_attepmt <=0:
+        verifide=input("what is the password?")
+        if verifide== password:
+            artist_change=("what is the artist that you would like to change?")
+            break
+        else:
+            print("that is incorect")
+            password_attepmt-=1
     while password_attepmt <=0:
         verifide=input("what is the password?")
         if verifide== password:
