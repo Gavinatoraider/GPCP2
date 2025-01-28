@@ -57,7 +57,7 @@ def main(admin): # Main function for running things
 ██║╚██╔╝██║██║   ██║╚════██║██║██║         ██╔══╝  ██╔══╝  ╚════██║   ██║   ██║╚██╗ ██╔╝██╔══██║██║     
 ██║ ╚═╝ ██║╚██████╔╝███████║██║╚██████╗    ██║     ███████╗███████║   ██║   ██║ ╚████╔╝ ██║  ██║███████╗
 ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝    ╚═╝     ╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝
-                           \nWelcome {user}\n\n1. Information\n2. Tickets\n3. Schedule\n4. Artists\n5. Recommendation\n6. Admin Login\n7. Exit\n\nChoose one (1-7): """)
+                           \nWelcome {user}\n\n1. Information\n2. Tickets\n3. Schedule\n4. Artists\n5. Recommendation\n6. Venues\n7. Admin Login\n8. Exit\n\nChoose one (1-8): """)
         if choice == 1: # Information
             pass
         elif choice == 2: # Tickets
@@ -68,9 +68,11 @@ def main(admin): # Main function for running things
             artist_main()
         elif choice == 5: # Recommendation
             recommendation()
-        elif choice == 6: # Switch to administrator
+        elif choice == 6: # Venues
+            pass
+        elif choice == 7: # Switch to administrator
             admin_check(admin)
-        elif choice == 7: # Exit
+        elif choice == 8: # Exit
             cs()
             print('Thanks for attending!')
             exit()
@@ -108,6 +110,11 @@ def cs(): # Clear Screen
 def recommendation(): 
     cs()
     recommendation_search = input("What genre/artists do you like the best? (exact): ")
+    for x in range(len(performances)):
+        for i in tickets[x]:
+            if str(i) == recommendation_search:
+                print(f"Name: {performances[x][0]}   Insturment: {performances[x][1]}   Genre: {performances[x][2]}   Time: {performances[x][3]}")
+    input("Press enter to continue")
 
 
 def ticket_main(admin): # Ticket main function (runs all ticket information through here) (jacksons function)
@@ -122,7 +129,7 @@ def ticket_main(admin): # Ticket main function (runs all ticket information thro
             elif choice == 3: # exit
                 ticket_report()
             elif choice == 4: # Random People Generator
-                gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
+                id = gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
             elif choice == 5: # Random People Generator
                 main(admin)
             else:
@@ -132,7 +139,7 @@ def ticket_main(admin): # Ticket main function (runs all ticket information thro
             cs()
             choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Ticket Information\n3. Exit\n\nChoose one (1-3): ")
             if choice == 1: # Buy Ticket
-                buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
+                id = buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
             elif choice == 2: # Ticket Information
                 ticket_information()
             elif choice == 3: # Exit
@@ -163,6 +170,7 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
         tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
         print(f"Ticket Created! [ID: {id}]")
     input("\nFINISHED GENERATING\nPress enter to continue")
+    return id
 
 def search_tickets(): # Search tickets 
     cs()
@@ -371,6 +379,7 @@ def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a t
     else:
         print("Ticket Canceled!")
         input("Press enter to continue")
+    return id
     
     
 def ticket_information(): # Prints out ticket information (anyone change this if you want and its a good idea no stupid stuff)
