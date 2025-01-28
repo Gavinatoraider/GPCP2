@@ -16,6 +16,20 @@ import time
 artist_list = []
 admin = False
 
+# Artist name, insturment, genre, time
+performances = [
+    ["Zack Mills", "Guitar", "Country", "11:00am Jan 20th 2025"],
+    ["Lena Brooks", "Piano", "Jazz", "2:00pm Jan 20th 2025"],
+    ["Evan Matthews", "Drums", "Rock", "4:30pm Jan 20th 2025"],
+    ["Sophia Reyes", "Violin", "Classical", "6:00pm Jan 20th 2025"],
+    ["James Carter", "Saxophone", "Blues", "8:00pm Jan 20th 2025"],
+    ["Tina Williams", "Vocals", "Pop", "10:00am Jan 21st 2025"],
+    ["Oliver Grant", "Guitar", "Folk", "12:00pm Jan 21st 2025"],
+    ["Chloe Anderson", "Cello", "Chamber Music", "3:00pm Jan 21st 2025"],
+    ["Noah Fisher", "Trumpet", "Big Band", "5:30pm Jan 21st 2025"],
+    ["Emily Stone", "Clarinet", "Contemporary", "7:30pm Jan 21st 2025"]
+]
+
 # Jacksons Variables
 tickets = []
 id = 0
@@ -54,7 +68,7 @@ def main(admin): # Main function for running things
         elif choice == 4: # Artist List
             artist_main()
         elif choice == 5: # Recommendation
-            pass
+            recommendation()
         elif choice == 6: # Switch to administrator
             admin_check(admin)
         elif choice == 7: # Exit
@@ -92,6 +106,9 @@ def float_input(text): # Only takes in floats
 def cs(): # Clear Screen
     print("\033c",end="")
 
+def recommendation(): 
+    cs()
+    recommendation_search = input("What genre/artists do you like the best? (exact): ")
 
 
 def ticket_main(admin): # Ticket main function (runs all ticket information through here) (jacksons function)
