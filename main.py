@@ -14,6 +14,7 @@ import time
 
 # Initializing Variables
 artist_list = []
+admin = False
 
 # Jacksons Variables
 tickets = []
@@ -28,21 +29,34 @@ age_list = []
 
 # Defining Funcitons
 
-def main():
+def main(admin): # Main function for running things
+    if admin == True: 
+        user = "Admin" # Changes name based on admin or not
+    else: 
+        user = "User"
     while True:
         cs()
-        choice = int_input("MUSIC FESTIVAL\n\n1. Information\n2. Tickets\n3. Schedule\n4. Artists\n5. Recommendation\n6. Exit\n\nChoose one (1-6): ")
+        choice = int_input(f"""
+███╗   ███╗██╗   ██╗███████╗██╗ ██████╗    ███████╗███████╗███████╗████████╗██╗██╗   ██╗ █████╗ ██╗     
+████╗ ████║██║   ██║██╔════╝██║██╔════╝    ██╔════╝██╔════╝██╔════╝╚══██╔══╝██║██║   ██║██╔══██╗██║     
+██╔████╔██║██║   ██║███████╗██║██║         █████╗  █████╗  ███████╗   ██║   ██║██║   ██║███████║██║     
+██║╚██╔╝██║██║   ██║╚════██║██║██║         ██╔══╝  ██╔══╝  ╚════██║   ██║   ██║╚██╗ ██╔╝██╔══██║██║     
+██║ ╚═╝ ██║╚██████╔╝███████║██║╚██████╗    ██║     ███████╗███████║   ██║   ██║ ╚████╔╝ ██║  ██║███████╗
+╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝    ╚═╝     ╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝
+                           \nWelcome {user}\n\n1. Information\n2. Tickets\n3. Schedule\n4. Artists\n5. Recommendation\n6. Admin Login\n7. Exit\n\nChoose one (1-7): """)
         if choice == 1: # Information
             pass
         elif choice == 2: # Tickets
-            ticket_main()
+            ticket_main(admin)
         elif choice == 3: # Schedule
             pass
         elif choice == 4: # Artist List
             artist_main()
         elif choice == 5: # Recommendation
             pass
-        elif choice == 6: # Exit
+        elif choice == 6: # Switch to administrator
+            admin_check(admin)
+        elif choice == 7: # Exit
             cs()
             print('Thanks for attending!')
             exit()
@@ -79,22 +93,33 @@ def cs(): # Clear Screen
 
 
 
-def ticket_main(): # Ticket main function (runs all ticket information through here) ((jacksons function))
-    while True:
-        cs()
-        choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Search Tickets\n3. Ticket Information\n4. Ticket Sales Report\n5. Generate Random Tickets\n6. Exit\n\nChoose one (1-6): ")
-        if choice == 1: # Buy Ticket
-            buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
-        elif choice == 2: # Search Tickets
-            search_tickets()
-        elif choice == 3: # Ticket Informatoin
-            ticket_information()
-        elif choice == 4: # Ticket Sales Report
-            ticket_report()
-        elif choice == 5: # Random People Generator
-            gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
-        elif choice == 6: # Exit
-            main()
+def ticket_main(admin): # Ticket main function (runs all ticket information through here) (jacksons function)
+    if admin == True:
+        while True:
+            cs()
+            choice = int_input("TICKET MENU\n\n1. Search Tickets\n2. Ticket Information\n3. Ticket Report\n4. Generate Random People\n5. Exit\n\nChoose one (1-5): ")
+            if choice == 1: # Search Tickets
+                search_tickets
+            elif choice == 2: # Ticket Informatoin
+                ticket_information()
+            elif choice == 3: # exit
+                ticket_report()
+            elif choice == 4: # Random People Generator
+                gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
+            elif choice == 5: # Random People Generator
+                main(admin)
+            else:
+                input('Invalid Input!\nPress enter to continue')
+    else:
+        while True:
+            cs()
+            choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Ticket Information\n3. Exit\n\nChoose one (1-3): ")
+            if choice == 1: # Buy Ticket
+                buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
+            elif choice == 2: # Ticket Information
+                ticket_information()
+            elif choice == 3: # Exit
+                main(admin)
 
 def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Random Ticket Generator
     cs()
@@ -212,9 +237,10 @@ Durations Bought:
 1 Month: {durations_bought.count("1 Month")}
 Season Pass: {durations_bought.count("Season Pass")}
 
-Average Age: {round(sum(age_list)/len(age_list),2)}
           """)   # The report is being worked on
-    input('Press enter to continue')
+    if len(age_list) != 0:
+        print(f"Average Age: {round(sum(age_list)/len(age_list),2)}")
+    input('\nPress enter to continue')
 
 
 def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a ticket (Jacksons Function)
@@ -380,7 +406,7 @@ def artist_main(): # Lets the user choose how they want to manipulate the artist
         elif choice == 5:
             edit_artist()
         elif choice == 6:
-            break
+            main(admin)
         else:
             print("Not in Range\nClick Enter to Continue")
             input()
@@ -491,5 +517,27 @@ def schedule_change():
             print("that is incorect")
             password_attepmt-=1
 
+def admin_check(admin): # Checks if your admin or not (login interface)
+    while True:
+        cs()
+        choice = int_input("Music Festival Login\n\n1. User login\n2. Admin login\n\nWhich one are you logging into? (1-2): ")
+        if choice == 1: # User Login
+            admin = False
+            main(admin)
+        elif choice == 2: # Admin Login
+            cs()
+            print("Admin Login Terminal")
+            admin_password = "Admin123" # Admin password
+            password_try = input("\nEnter password: ")
+            if password_try == admin_password: # If correct
+                print("\nPassword Verified!")
+                admin = True
+                input("\nWelcome Admin!\nPress enter to continue")
+                main(admin)
+            else: # If incorrect
+                input("Invalid Password!\nPress enter to continue")
+        else:
+            input("Invalid Input! (1-2)\nPress enter to continue")
+
 # Running the Code
-main()
+admin_check(admin) # Checks if they are admin or not, then runs main
