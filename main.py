@@ -63,7 +63,7 @@ def main(admin): # Main function for running things
         elif choice == 2: # Tickets
             ticket_main(admin)
         elif choice == 3: # Schedule
-            pass
+            schedule_main(admin)
         elif choice == 4: # Artist List
             artist_main()
         elif choice == 5: # Recommendation
@@ -497,6 +497,32 @@ def search_artist(): # It shows results of the word used to search through the a
 
 
 # Gavins code
+
+def schedule_main(admin): # schedule main function 
+    if admin == True:
+        while True:
+            cs()
+            choice = int_input(" add to schedule\n\n1. remove item from schedule\n2. exit\n3. pick one (1-3): ")
+            if choice == 1: # adds schedule info
+                schedule_add()
+            elif choice == 2: # removes from schedule
+                schedule_remove()
+            elif choice == 3: # exit
+                break
+                main(admin)
+            else:
+                input('Invalid Input!\nPress enter to continue')
+    else:
+        while True:
+            cs()
+            choice = int_input("SCHEDULE MENU\n\n1. see schedule\n2. Exit\n\nChoose one (1-2): ")
+            if choice == 1: # Buy Ticket
+                
+                pass
+
+            elif choice == 2: # Exit
+                main(admin)
+
 
 # the schedule
 
