@@ -116,7 +116,7 @@ def ticket_main(admin): # Ticket main function (runs all ticket information thro
             cs()
             choice = int_input("TICKET MENU\n\n1. Search Tickets\n2. Ticket Information\n3. Ticket Report\n4. Generate Random People\n5. Exit\n\nChoose one (1-5): ")
             if choice == 1: # Search Tickets
-                search_tickets
+                search_tickets()
             elif choice == 2: # Ticket Informatoin
                 ticket_information()
             elif choice == 3: # exit
