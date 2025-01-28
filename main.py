@@ -361,13 +361,16 @@ Your information is kept in a secure online server with {random.randint(1,1000)}
 
 
 # Luke's Functions
-def artist_main(): # 
+def artist_main(): # Lets the user choose how they want to manipulate the artist list.
     while True:
         cs()
         choice = int_input("\nArtist List Management\n\n1. Display\n2. Search\n3. Add\n4. Remove\n5. Edit\n6. Exit\n")
-        if choice == 1:
-            print(f"\nArtist List: {artist_list}\nClick Enter to Continue")
-            input()
+        if choice == 1: # Displays the artist list
+            print("Displaying Artists\n")
+            for artist in artist_list:
+                print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
+            input("Click Enter to Continue\n")
+
         elif choice == 2:
             search_artist()
         elif choice == 3:
@@ -376,23 +379,26 @@ def artist_main(): #
             remove_artist()
         elif choice == 5:
             edit_artist()
-        else:
+        elif choice == 6:
             break
+        else:
+            print("Not in Range\nClick Enter to Continue")
+            input()
 
-def add_artist(): #
+def add_artist(): # Lets the user add an artist and their information to the list.
     print("Adding An Artist")
     artist_name = str_input("What is the artist's name?:\n")
     artist_genre = str_input("What is the artist's genre?:\n")
-    artist_time = str_input("What is the artist's time duration in minutes?:\n")
+    artist_time = int_input("What is the artist's time duration in minutes?:\n")
 
     artist_list.append([artist_name, artist_genre, artist_time])
 
-def remove_artist(): #
+def remove_artist(): # Removes the inputted artist from the list
     removed = 0
     print("Removing An Artist")
     artist_name = str_input("What is the artist's name?:\n")
 
-    for artist in artist_list:
+    for artist in artist_list.copy(): 
         if artist_name.title() == artist[0].title():
             artist_list.remove(artist)
             removed = 1
@@ -400,37 +406,49 @@ def remove_artist(): #
         print("Not in List\nClick Enter to Continue")
         input()
 
-def edit_artist(): #
+def edit_artist(): # Edits the specified information to the inputted information from a specific artist
     edited = 0
     print("Editing An Artist")
     artist_name = str_input("What is the artist's name?:\n")
     while True:
-        change_type = int_input("What do you want changed?\nName(1) Genre(2) Time(3)\n") -1
+        change_type = int_input("What do you want changed?\n1. Name\n2. Genre\n3. Time\n") -1
         if change_type < 0 or change_type > 2:
             print("Not in Range (1-3)")
             continue
         break
-    new_text = str_input("What do you want it changed to?:\n")
+    while True:
+        new_text = str_input("What do you want it changed to?:\n")
+        if change_type == 2:
+            try:
+                new_text = int(new_text)
+            except:
+                print("Invalid Input! (only integers accepted)\nClick Enter to Continue")
+                input()
+                continue
+        break
 
     for artist_num, artist in enumerate(artist_list):
         if artist_name.title() == artist[0].title():
             artist_list[artist_num][change_type] = new_text
             edited = 1
     if edited == 0:
-        print("Not in List\nClick Enter to Continue")
+        print("Not In List\nClick Enter to Continue")
         input()
 
-def search_artist():
+def search_artist(): # It shows results of the word used to search through the artist list.
     artist_results = []
     print("Searching For An Artist")
     artist_search = str_input("Search for the artist through their name, genre, or time:\n").upper()
     for artist in artist_list:
         for fact in artist:
-            if artist_search in fact.upper():
+            if artist_search in str(fact).upper():
                 artist_results.append(artist)
                 break
-    print(f"Results: {artist_results}\nClick Enter to Continue")
-    input()
+            
+    for artist in artist_results:
+        print("Results:\n")
+        print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
+    input("Click Enter to Continue\n")
 
 
 
