@@ -139,7 +139,7 @@ def ticket_main(admin,id): # Ticket main function (runs all ticket information t
             cs()
             choice = int_input("TICKET MENU\n\n1. Buy Ticket\n2. Ticket Information\n3. Exit\n\nChoose one (1-3): ")
             if choice == 1: # Buy Ticket
-                id = buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
+                buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id)
             elif choice == 2: # Ticket Information
                 ticket_information()
             elif choice == 3: # Exit
@@ -158,6 +158,7 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
         getcost(membership,duration)
         cost = random.randint(100,400)
         id += 1
+        idr = f"{id}r"
         creditcard = random.randint(1000000000000000,9999999999999999) # Random Credit Card
         cvv = random.randint(100,999)
         ticket_time = time.ctime()
@@ -166,9 +167,9 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
             male_ratio += 1
         else:
             female_ratio += 1
-        ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
-        tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
-        print(f"Ticket Created! [ID: {id}]")
+        ticketlist = [firstname,lastname,age,membership,duration,cost,idr,creditcard,cvv,ticket_time,gender]
+        tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, RID (randomly generated ID), CC, CVV, TIME, gender
+        print(f"Ticket Created! [ID: {idr}")
     input("\nFINISHED GENERATING\nPress enter to continue")
     return id
 
