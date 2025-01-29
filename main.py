@@ -1,11 +1,9 @@
 # Jackson Hauley, Gavin Pierce, Lizzy Saldana, Luke Murdock
 
-artist_scheduale= []
-
 password = ("MusicFestival1234")
 password_attepmt = 3
 
-loop_num=0
+loop_num=10
 
 num_of_preformences=(15)
 
@@ -554,7 +552,7 @@ def schedule_main(admin): # schedule main function
     if admin == True:
         while True:
             cs()
-            choice = int_input(" add to schedule\n\n1. remove item from schedule\n2. exit\n3. pick one (1-3): ")
+            choice = int_input("\n\n1. add to schedule\n2.  remove item from schedule\n3. exit pick one (1-3): ")
             if choice == 1: # adds schedule info
                 schedule_add()
             elif choice == 2: # removes from schedule
@@ -580,37 +578,26 @@ def schedule_main(admin): # schedule main function
 
 # adds people to schedule
 def schedule_add():
-    artist_add=input("what is the artist's name?")
-    artist_scheduale.append(artist_add)
+    artist_name_add=input("what is the artist's name? ")
+    artist_intrument_add=input("what is their intrument? ")
+    artist_gener_add=input("what is their gener? ")
+    artist_time_add=input("what time are they playing? ")
+    new_artist_list=[artist_name_add]
+    performances.append()
     loop_num+=1
     print(artist_list)
 
 # removes from schedule
 def schedule_remove():
-    password_attepmt = 0
-    while password_attepmt <=0:
-        verifide=input("what is the password?")
-        if verifide== password:
-            artist_remove=input("what is the artist's name that you would like to remove")
-            artist_scheduale.remove(artist_remove)
-            loopnum-=1
+            artist_remove=input("what is the artist's name that you would like to remove ")
+            performances.remove(artist_remove)
+            performances-=1
             print(artist_list)
-            break
-        else:
-            print("that is incorect")
-            password_attepmt-=1
 
 # changes schedule
 def schedule_change():
-    password_attepmt = 0
-    while password_attepmt <=0:
-        verifide=input("what is the password?")
-        if verifide== password:
             artist_change=("what is the artist that you would like to change?")
-            break
-        else:
-            print("that is incorect")
-            password_attepmt-=1
+
 
 def admin_check(admin): # Checks if your admin or not (login interface)
     while True:
