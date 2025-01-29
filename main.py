@@ -158,7 +158,6 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
         getcost(membership,duration)
         cost = random.randint(100,400)
         id += 1
-        idr = f"{id}r"
         creditcard = random.randint(1000000000000000,9999999999999999) # Random Credit Card
         cvv = random.randint(100,999)
         ticket_time = time.ctime()
@@ -167,9 +166,9 @@ def gen_rand_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Ra
             male_ratio += 1
         else:
             female_ratio += 1
-        ticketlist = [firstname,lastname,age,membership,duration,cost,idr,creditcard,cvv,ticket_time,gender]
-        tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, RID (randomly generated ID), CC, CVV, TIME, gender
-        print(f"Ticket Created! [ID: {idr}")
+        ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
+        tickets.append(ticketlist) # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME, gender
+        print(f"Ticket Created! [ID: {id}")
     input("\nFINISHED GENERATING\nPress enter to continue")
     return id
 
