@@ -61,7 +61,7 @@ def main(admin): # Main function for running things
         if choice == 1: # Information
             pass
         elif choice == 2: # Tickets
-            ticket_main(admin)
+            ticket_main(admin,id)
         elif choice == 3: # Schedule
             schedule_main(admin)
         elif choice == 4: # Artist List
@@ -117,7 +117,7 @@ def recommendation():
     input("Press enter to continue")
 
 
-def ticket_main(admin): # Ticket main function (runs all ticket information through here) (jacksons function)
+def ticket_main(admin,id): # Ticket main function (runs all ticket information through here) (jacksons function)
     if admin == True:
         while True:
             cs()
@@ -437,8 +437,12 @@ def artist_admin_main(): # Lets the user choose how they want to manipulate the 
     while True:
         cs()
         choice = int_input("\nArtist List Management\n\n1. Display\n2. Search\n3. Add\n4. Remove\n5. Edit\n6. Exit\n")
-        if choice == 1: 
-            artist_display()
+        if choice == 1: # Displays the artist list
+            print("Displaying Artists\n")
+            for artist in artist_list:
+                print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
+            input("Click Enter to Continue\n")
+
         elif choice == 2:
             search_artist()
         elif choice == 3:
@@ -525,6 +529,21 @@ def edit_artist(): # Edits the specified information to the inputted information
     if edited == 0:
         print("Not In List\nClick Enter to Continue")
         input()
+
+def search_artist(): # It shows results of the word used to search through the artist list.
+    artist_results = []
+    print("Searching For An Artist")
+    artist_search = str_input("Search for the artist through their name, genre, or time:\n").upper()
+    for artist in artist_list:
+        for fact in artist:
+            if artist_search in str(fact).upper():
+                artist_results.append(artist)
+                break
+            
+    for artist in artist_results:
+        print("Results:\n")
+        print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
+    input("Click Enter to Continue\n")
 
 
 
