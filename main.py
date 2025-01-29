@@ -430,7 +430,7 @@ def artist_nonadmin_main():
         elif choice == 2:
             search_artist()
         elif choice == 3:
-            main(admin)
+            main(admin,id)
         else:
             print("Not in Range\nClick Enter to Continue")
             input()
@@ -454,7 +454,7 @@ def artist_admin_main(): # Lets the user choose how they want to manipulate the 
         elif choice == 5:
             edit_artist()
         elif choice == 6:
-            main(admin)
+            main(admin,id)
         else:
             print("Not in Range\nClick Enter to Continue")
             input()
@@ -484,44 +484,45 @@ def search_artist(): # It shows results of the word used to search through the a
 
 def add_artist(): # Lets the user add an artist and their information to the list.
     print("Adding An Artist")
-    artist_name = str_input("What is the artist's name?:\n")
-    artist_genre = str_input("What is the artist's genre?:\n")
-    artist_time = int_input("What is the artist's time duration in minutes?:\n")
-
+    artist_name = str_input("What is the artist's name?: ")
+    artist_genre = str_input("What is the artist's genre?: ")
+    artist_time = int_input("What is the artist's time duration in minutes?: ")
     artist_list.append([artist_name, artist_genre, artist_time])
+    input("Press enter to continue")
 
 def remove_artist(): # Removes the inputted artist from the list
     removed = 0
     print("Removing An Artist")
-    artist_name = str_input("What is the artist's name?:\n")
+    artist_name = str_input("What is the artist's name?: ")
 
     for artist in artist_list.copy(): 
         if artist_name.title() == artist[0].title():
             artist_list.remove(artist)
             removed = 1
     if removed == 0:
-        print("Not in List\nClick Enter to Continue")
+        print("Not in List\nPress enter to continue")
         input()
 
 def edit_artist(): # Edits the specified information to the inputted information from a specific artist
     edited = 0
     print("Editing An Artist")
-    artist_name = str_input("What is the artist's name?:\n")
+    artist_name = str_input("What is the artist's name?: ")
     while True:
-        change_type = int_input("What do you want changed?\n1. Name\n2. Genre\n3. Time\n") -1
+        change_type = int_input("\nWhat do you want changed?\n1. Name\n2. Genre\n3. Time\n\nPick one (1-3): ") -1
         if change_type < 0 or change_type > 2:
             print("Not in Range (1-3)")
             continue
         break
     while True:
-        new_text = str_input("What do you want it changed to?:\n")
+        new_text = str_input("What do you want it changed to?: ")
         if change_type == 2:
             try:
                 new_text = int(new_text)
             except:
-                print("Invalid Input! (only integers accepted)\nClick Enter to Continue")
-                input()
+                input("Invalid Input! (only integers accepted)\nPress Enter to Continue")
+
                 continue
+        input("Press enter to continue")
         break
 
     for artist_num, artist in enumerate(artist_list):
@@ -535,7 +536,7 @@ def edit_artist(): # Edits the specified information to the inputted information
 def search_artist(): # It shows results of the word used to search through the artist list.
     artist_results = []
     print("Searching For An Artist")
-    artist_search = str_input("Search for the artist through their name, genre, or time:\n").upper()
+    artist_search = str_input("Search for the artist through their name, genre, or time: ").upper()
     for artist in artist_list:
         for fact in artist:
             if artist_search in str(fact).upper():
@@ -543,9 +544,9 @@ def search_artist(): # It shows results of the word used to search through the a
                 break
             
     for artist in artist_results:
-        print("Results:\n")
+        print("\nResults:\n")
         print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
-    input("Click Enter to Continue\n")
+    input("Press Enter to Continue\n")
 
 
 
@@ -556,26 +557,25 @@ def schedule_main(admin): # schedule main function
     if admin == True:
         while True:
             cs()
-            choice = int_input(" add to schedule\n\n1. remove item from schedule\n2. exit\n3. pick one (1-3): ")
+            choice = int_input("SCHEDULE MENU\n\n1.add to schedule\n\n2. remove item from schedule\n3. exit\n\nPick one (1-3): ")
             if choice == 1: # adds schedule info
                 schedule_add()
             elif choice == 2: # removes from schedule
                 schedule_remove()
             elif choice == 3: # exit
-                break
-                main(admin)
+                main(admin,id)
             else:
                 input('Invalid Input!\nPress enter to continue')
     else:
         while True:
             cs()
-            choice = int_input("SCHEDULE MENU\n\n1. see schedule\n2. Exit\n\nChoose one (1-2): ")
+            choice = int_input("SCHEDULE MENU\n\n1. See schedule\n2. Exit\n\nChoose one (1-2): ")
             if choice == 1: # Buy Ticket
                 
                 pass
 
             elif choice == 2: # Exit
-                main(admin)
+                main(admin,id)
 
 
 # the schedule
