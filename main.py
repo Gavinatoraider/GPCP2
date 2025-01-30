@@ -1,18 +1,24 @@
 # Jackson Hauley, Gavin Pierce, Lizzy Saldana, Luke Murdock
 
+
 password = ("MusicFestival1234")
 password_attepmt = 3
 
+
 loop_num=10
 
+
 num_of_preformences=(15)
+
 
 import random
 import time
 
+
 # Initializing Variables
 artist_list = []
 admin = False
+
 
 # Artist name, insturment, genre, time
 performances = [
@@ -28,6 +34,7 @@ performances = [
     ["Emily Stone", "Clarinet", "Contemporary", "7:30pm Jan 21st 2025"]
 ]
 
+
 # Jacksons Variables
 tickets = []
 id = 0
@@ -39,29 +46,31 @@ memberships_bought = []
 durations_bought = []
 age_list = []
 
+
 # Defining Funcitons
 
-def main(admin,id): # Main function for running things
-    if admin == True: 
+
+def main(admin,id,performances): # Main function for running things
+    if admin == True:
         user = "Admin" # Changes name based on admin or not
-    else: 
+    else:
         user = "User"
     while True:
         cs()
         choice = int_input(f"""
-███╗   ███╗██╗   ██╗███████╗██╗ ██████╗    ███████╗███████╗███████╗████████╗██╗██╗   ██╗ █████╗ ██╗     
-████╗ ████║██║   ██║██╔════╝██║██╔════╝    ██╔════╝██╔════╝██╔════╝╚══██╔══╝██║██║   ██║██╔══██╗██║     
-██╔████╔██║██║   ██║███████╗██║██║         █████╗  █████╗  ███████╗   ██║   ██║██║   ██║███████║██║     
-██║╚██╔╝██║██║   ██║╚════██║██║██║         ██╔══╝  ██╔══╝  ╚════██║   ██║   ██║╚██╗ ██╔╝██╔══██║██║     
+███╗   ███╗██╗   ██╗███████╗██╗ ██████╗    ███████╗███████╗███████╗████████╗██╗██╗   ██╗ █████╗ ██╗    
+████╗ ████║██║   ██║██╔════╝██║██╔════╝    ██╔════╝██╔════╝██╔════╝╚══██╔══╝██║██║   ██║██╔══██╗██║    
+██╔████╔██║██║   ██║███████╗██║██║         █████╗  █████╗  ███████╗   ██║   ██║██║   ██║███████║██║    
+██║╚██╔╝██║██║   ██║╚════██║██║██║         ██╔══╝  ██╔══╝  ╚════██║   ██║   ██║╚██╗ ██╔╝██╔══██║██║    
 ██║ ╚═╝ ██║╚██████╔╝███████║██║╚██████╗    ██║     ███████╗███████║   ██║   ██║ ╚████╔╝ ██║  ██║███████╗
 ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝    ╚═╝     ╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝
                            \nWelcome {user}\n\n1. Information\n2. Tickets\n3. Schedule\n4. Artists\n5. Recommendation\n6. Venues\n7. Admin Login\n8. Exit\n\nChoose one (1-8): """)
         if choice == 1: # Information
             pass
         elif choice == 2: # Tickets
-            ticket_main(admin,id)
+            ticket_main(admin,id,performances)
         elif choice == 3: # Schedule
-            schedule_main(admin)
+            schedule_main(admin,performances)
         elif choice == 4: # Artist List
             artist_main(admin)
         elif choice == 5: # Recommendation
@@ -69,11 +78,12 @@ def main(admin,id): # Main function for running things
         elif choice == 6: # Venues
             pass
         elif choice == 7: # Switch to administrator
-            admin_check(admin,id)
+            admin_check(admin,id,performances)
         elif choice == 8: # Exit
             cs()
             print('Thanks for attending!')
             exit()
+
 
 def int_input(text): # Only takes in integers
     while True:
@@ -83,7 +93,7 @@ def int_input(text): # Only takes in integers
             input("Press enter to try again")
             continue
         return output
-    
+   
 def str_input(text): # Only takes in string
     while True:
         try: output = str(input(text))
@@ -92,7 +102,7 @@ def str_input(text): # Only takes in string
             input("Press enter to try again")
             continue
         return output
-    
+   
 def float_input(text): # Only takes in floats
     while True:
         try: output = float(input(text))
@@ -102,10 +112,12 @@ def float_input(text): # Only takes in floats
             continue
         return output
 
+
 def cs(): # Clear Screen
     print("\033c",end="")
 
-def recommendation(): 
+
+def recommendation():
     cs()
     recommendation_search = input("What genre/artists do you like the best? (exact): ")
     for x in range(len(performances)):
@@ -115,7 +127,9 @@ def recommendation():
     input("Press enter to continue")
 
 
-def ticket_main(admin,id): # Ticket main function (runs all ticket information through here) (jacksons function)
+
+
+def ticket_main(admin,id,performances): # Ticket main function (runs all ticket information through here) (jacksons function)
     if admin == True:
         while True:
             cs()
@@ -129,7 +143,7 @@ def ticket_main(admin,id): # Ticket main function (runs all ticket information t
             elif choice == 4: # Random People Generator
                 id = gen_rand_ticket(age_list,total_money,tickets_bought,male_ratio,female_ratio,id)
             elif choice == 5: # Random People Generator
-                main(admin,id)
+                main(admin,id,performances)
             else:
                 input('Invalid Input!\nPress enter to continue')
     else:
@@ -141,15 +155,16 @@ def ticket_main(admin,id): # Ticket main function (runs all ticket information t
             elif choice == 2: # Ticket Information
                 ticket_information()
             elif choice == 3: # Exit
-                main(admin,id)
+                main(admin,id,performances)
+
 
 def gen_rand_ticket(age_list,total_money,tickets_bought,male_ratio,female_ratio,id): # Random Ticket Generator
     cs()
     amount = int_input("How many tickets do you want to generate?: ")
     print()
     for x in range(amount):
-        firstname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
-        lastname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce"])
+        firstname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce","Lincoln","Haggard","Eli","Cooper","Owen","Bowerbank","Powerbank","LaRose","Alec","George","Busby","RealHumanFirstName001"])
+        lastname = random.choice(["Jackson","Gavin","Nicole","Luke","Lizzy","Hauley","Saldana","Murdock","Pierce","Lincoln","Haggard","Eli","Cooper","Owen","Bowerbank","Powerbank","LaRose","Alec","George","Busby","RealHumanLastName002"])
         age = random.choice(list(range(1,120)))
         age_list.append(age)
         membership = random.choice(["NPC","VIP","MVP"])
@@ -172,7 +187,8 @@ def gen_rand_ticket(age_list,total_money,tickets_bought,male_ratio,female_ratio,
     input("\nFINISHED GENERATING\nPress enter to continue")
     return id
 
-def search_tickets(): # Search tickets 
+
+def search_tickets(): # Search tickets
     cs()
     print("Search All Tickets")
     search_keyword = input("Enter any keyword or ID to try and find a ticket (case sensitive): ") # First, Last, Age, Member, Duration, Cost, ID, CC, CVV, TIME,gender
@@ -189,27 +205,28 @@ def search_tickets(): # Search tickets
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
-    █  /     \\  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                 
-    █  |O   O|  █ Membership Level: {tickets[x][3]}   
+    █  /     \\  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                
+    █  |O   O|  █ Membership Level: {tickets[x][3]}  
     █  |  L  |  █ Date Bought: {tickets[x][9]}  
-    █   \ U /   █ Duration: {tickets[x][4]}         
-    █    | |    █ ID: {tickets[x][6]}                     
+    █   \ U /   █ Duration: {tickets[x][4]}        
+    █    | |    █ ID: {tickets[x][6]}                    
     ██████████████████████████████████████████████████████""") # Printing out their ticket
             else:
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {tickets[x][0]} {tickets[x][1]}
-    █  W     W  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                 
-    █ W|O   O|W █ Membership Level: {tickets[x][3]}   
+    █  W     W  █ Age: {tickets[x][2]} Gender: {tickets[x][10]}                
+    █ W|O   O|W █ Membership Level: {tickets[x][3]}  
     █ M|  L  |M █ Date Bought: {tickets[x][9]}  
-    █   \ U /   █ Duration: {tickets[x][4]}         
-    █    | |    █ ID: {tickets[x][6]}                     
+    █   \ U /   █ Duration: {tickets[x][4]}        
+    █    | |    █ ID: {tickets[x][6]}                    
     ██████████████████████████████████████████████████████""") # Printing out their ticket
             print(f"\nCost: ${tickets[x][5]}")
             print(f"Credit Card: {tickets[x][7]}")
             print(f"CVV: {tickets[x][8]}")
             input("Press enter to continue")
             break
+
 
 def getcost(membership,duration):
     if membership == "NPC":
@@ -218,7 +235,7 @@ def getcost(membership,duration):
         cost = 49.99
     elif membership == "MVP":
         cost = 99.99
-    if duration == "1 Day": 
+    if duration == "1 Day":
         cost += 0
     elif duration == "3 Days":
         cost += 40
@@ -230,7 +247,8 @@ def getcost(membership,duration):
         cost += 300
     return cost
 
-def ticket_report(): # Ticket report 
+
+def ticket_report(): # Ticket report
     cs()
     total_ratio = male_ratio + female_ratio # Calculates percentage of female/male people who bought tickets
     if total_ratio != 0:
@@ -241,19 +259,23 @@ def ticket_report(): # Ticket report
         female_percentage = 0
     print(f"""
 TICKET REPORT (excludes generated tickets)
-          
+         
 Total tickets bought: {tickets_bought}
+
 
 Genders:
 {male_percentage:.2%} Male
 {female_percentage:.2%} Female
 
+
 Total Money Earned: ${total_money}
+
 
 Memberships Bought:
 NPC: {memberships_bought.count("NPC")}
 VIP: {memberships_bought.count("VIP")}
 MVP: {memberships_bought.count("MVP")}
+
 
 Durations Bought:
 1 Day: {durations_bought.count("1 Day")}
@@ -262,10 +284,13 @@ Durations Bought:
 1 Month: {durations_bought.count("1 Month")}
 Season Pass: {durations_bought.count("Season Pass")}
 
+
           """)   # The report is being worked on
     if len(age_list) != 0:
         print(f"Average Age: {round(sum(age_list)/len(age_list),2)}")
     input('\nPress enter to continue')
+
+
 
 
 def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a ticket (Jacksons Function)
@@ -325,6 +350,7 @@ def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a t
             print("Invalid Input (1-5)") # Error Handling
             input("Press enter to continue")
 
+
     print(f"\nMembership {membership} selected") # Visual
     print(f"This ticket will last {duration}!")
     print(f"Cost: ${getcost(membership,duration)}")
@@ -354,21 +380,21 @@ def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a t
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {firstname} {lastname}
-    █  /     \\  █ Age: {age} Gender: {gender}             
-    █  |O   O|  █ Membership Level: {membership}   
+    █  /     \\  █ Age: {age} Gender: {gender}            
+    █  |O   O|  █ Membership Level: {membership}  
     █  |  L  |  █ Date Bought: {ticket_time}  
-    █   \ W /   █ Duration: {duration}         
-    █    | |    █ ID: {id}                     
+    █   \ W /   █ Duration: {duration}        
+    █    | |    █ ID: {id}                    
     ██████████████████████████████████████████████████████""") # Printing out their ticket
             else:
                 print(f"""
     ██████████████████████████████████████████████████████
     █   WMWMW   █ Name: {firstname} {lastname}
-    █  W     W  █ Age: {age} Gender: {gender}                 
+    █  W     W  █ Age: {age} Gender: {gender}                
     █ W|O   O|W █ Membership Level: {membership}  
     █ M|  L  |M █ Date Bought: {ticket_time}  
-    █   \ U /   █ Duration: {duration}         
-    █    | |    █ ID: {id}                     
+    █   \ U /   █ Duration: {duration}        
+    █    | |    █ ID: {id}                    
     ██████████████████████████████████████████████████████""") # Printing out their ticket
             input("\nPress enter to continue")
             ticketlist = [firstname,lastname,age,membership,duration,cost,id,creditcard,cvv,ticket_time,gender]
@@ -380,12 +406,13 @@ def buy_ticket(total_money,tickets_bought,male_ratio,female_ratio,id): # Buy a t
         print("Ticket Canceled!")
         input("Press enter to continue")
     return id
-    
-    
+   
+   
 def ticket_information(): # Prints out ticket information (anyone change this if you want and its a good idea no stupid stuff)
     cs()
     print(f"""
 TICKET INFORMATION
+
 
 Membership Levels:
     NPC ($19.99)
@@ -394,7 +421,7 @@ The most basic pass, provides you with all concerts/artist shows in public seati
 The 2nd best pass, gives you a special fast lane in all lines and VIP seating zone, plus you get to meet an artist
     MVP ($99.99)
 THE BEST pass you can buy, gives extremely fast lines and 50% off everything in the convention, meet all artists/performers and free merch + candy + 1 meal/day
-          
+         
 Duration Levels:
     1 Day: 1 day in the convention from 7:00am to 10:00pm
     3 Day: 3 days in the convention from 7:00am to 10:00pm (2 overnights)
@@ -402,12 +429,19 @@ Duration Levels:
     1 Month: 30 days in the convention from 7:00am to 10:00pm (29 overnights)
     Season Pass: Full season access to the convention any time, 1 free meal a day (stackable with MVP)
 
-Your information is kept in a secure online server with {random.randint(1,1000)} firewalls protecting it RIGHT NOW
-          """)   
+
+Your information is kept in a secure online server with {random.randint(random.randint(random.randint(random.randint(random.randint(random.randint(random.randint(random.randint(random.randint(1,10000000000),10000000000),10000000000),10000000000),10000000000),10000000000),10000000000),10000000000),10000000000)} firewalls protecting it RIGHT NOW
+          """)  
     input('Press enter to continue')
 
 
-        
+
+
+       
+
+
+
+
 
 
 
@@ -419,6 +453,7 @@ def artist_main(admin): # Brings the user to the admin main or the non-admin mai
     elif admin == True:
         artist_admin_main()
 
+
 def artist_nonadmin_main():
     while True:
         cs()
@@ -428,21 +463,18 @@ def artist_nonadmin_main():
         elif choice == 2:
             search_artist()
         elif choice == 3:
-            main(admin,id)
+            main(admin,id,performances)
         else:
-            print("Not in Range\nClick Enter to Continue")
+            print("Not in Range\nPress enter to continue")
             input()
+
 
 def artist_admin_main(): # Lets the user choose how they want to manipulate the artist list.
     while True:
         cs()
         choice = int_input("\nArtist List Management\n\n1. Display\n2. Search\n3. Add\n4. Remove\n5. Edit\n6. Exit\n")
-        if choice == 1: # Displays the artist list
-            print("Displaying Artists\n")
-            for artist in artist_list:
-                print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
-            input("Click Enter to Continue\n")
-
+        if choice == 1:
+            artist_display()
         elif choice == 2:
             search_artist()
         elif choice == 3:
@@ -452,10 +484,11 @@ def artist_admin_main(): # Lets the user choose how they want to manipulate the 
         elif choice == 5:
             edit_artist()
         elif choice == 6:
-            main(admin,id)
+            main(admin,id,performances)
         else:
-            print("Not in Range\nClick Enter to Continue")
+            print("Not in Range\nPress enter to continue")
             input()
+
 
 def artist_display(): # Displays the artist list
     print("Displaying Artists:\n")
@@ -463,7 +496,8 @@ def artist_display(): # Displays the artist list
         print("Nothing In List\n")
     for artist in artist_list:
         print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
-    input("Click Enter to Continue\n")
+    input("Press enter to continue\n")
+
 
 def search_artist(): # It shows results of the word used to search through the artist list.
     artist_results = []
@@ -474,11 +508,12 @@ def search_artist(): # It shows results of the word used to search through the a
             if artist_search in str(fact).upper():
                 artist_results.append(artist)
                 break
-            
+           
     print(f"Results: {'None Found' if artist_results == [] else ''}\n")
     for artist in artist_results:
         print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
-    input("Click Enter to Continue\n")
+    input("Press enter to continue\n")
+
 
 def add_artist(): # Lets the user add an artist and their information to the list.
     print("Adding An Artist")
@@ -488,18 +523,21 @@ def add_artist(): # Lets the user add an artist and their information to the lis
     artist_list.append([artist_name, artist_genre, artist_time])
     input("Press enter to continue")
 
+
 def remove_artist(): # Removes the inputted artist from the list
     removed = 0
     print("Removing An Artist")
     artist_name = str_input("What is the artist's name?: ")
 
-    for artist in artist_list.copy(): 
+
+    for artist in artist_list.copy():
         if artist_name.title() == artist[0].title():
             artist_list.remove(artist)
             removed = 1
     if removed == 0:
         print("Not in List\nPress enter to continue")
         input()
+
 
 def edit_artist(): # Edits the specified information to the inputted information from a specific artist
     edited = 0
@@ -519,50 +557,44 @@ def edit_artist(): # Edits the specified information to the inputted information
             except:
                 input("Invalid Input! (only integers accepted)\nPress Enter to Continue")
 
+
                 continue
         input("Press enter to continue")
         break
+
 
     for artist_num, artist in enumerate(artist_list):
         if artist_name.title() == artist[0].title():
             artist_list[artist_num][change_type] = new_text
             edited = 1
     if edited == 0:
-        print("Not In List\nClick Enter to Continue")
+        print("Not In List\nPress enter to continue")
         input()
 
-def search_artist(): # It shows results of the word used to search through the artist list.
-    artist_results = []
-    print("Searching For An Artist")
-    artist_search = str_input("Search for the artist through their name, genre, or time: ").upper()
-    for artist in artist_list:
-        for fact in artist:
-            if artist_search in str(fact).upper():
-                artist_results.append(artist)
-                break
-            
-    for artist in artist_results:
-        print("\nResults:\n")
-        print(f"Artist:\n Name- {artist[0]}\n Genre- {artist[1]}\n Time- {artist[2]}\n")
-    input("Press Enter to Continue\n")
+
 
 
 
 
 # Gavins code
 
-def schedule_main(admin): # schedule main function 
+
+def schedule_main(admin,performances): # schedule main function
     if admin == True:
         while True:
             cs()
-            choice = int_input("SCHEDULE MENU\n\n1.add to schedule\n\n2. remove item from schedule\n3. exit\n\nPick one (1-3): ")
+            choice = int_input("SCHEDULE MENU\n\n1.add to schedule\n2. remove item from schedule\n3. change schedule\n4. exit \n\nPick one (1-4): ")
+
 
             if choice == 1: # adds schedule info
-                schedule_add()
+                schedule_add(performances)
             elif choice == 2: # removes from schedule
-                schedule_remove()
+                schedule_remove(performances)
             elif choice == 3: # exit
-                main(admin,id)
+                main(admin,id,performances)
+            elif choice == 4: # exit
+                main(admin,id,performances)
+           
             else:
                 input('Invalid Input!\nPress enter to continue')
     else:
@@ -570,45 +602,92 @@ def schedule_main(admin): # schedule main function
             cs()
             choice = int_input("SCHEDULE MENU\n\n1. See schedule\n2. Exit\n\nChoose one (1-2): ")
             if choice == 1: # Buy Ticket
-                
+               
                 pass
 
+
             elif choice == 2: # Exit
-                main(admin,id)
+                main(admin,id,performances)
 
-
-# the schedule
 
 # adds people to schedule
-def schedule_add():
+def schedule_add(performances):
     artist_name_add=input("what is the artist's name? ")
-    artist_intrument_add=input("what is their intrument? ")
-    artist_gener_add=input("what is their gener? ")
+    artist_instrument_add=input("what is their intrument? ")
+    artist_genre_add=input("what is their gener? ")
     artist_time_add=input("what time are they playing? ")
-    new_artist_list=[artist_name_add]
-    performances.append()
-    loop_num+=1
-    print(artist_list)
+    new_artist_list=[artist_name_add, artist_instrument_add, artist_genre_add, artist_time_add]
+
+
+    # Adds the new artists info to the performances list
+    performances.append(new_artist_list)
+
+
+    print("Artist added to the schedule.")
+    print(performances)
+
+
+
+
+
 
 # removes from schedule
-def schedule_remove():
-            artist_remove=input("what is the artist's name that you would like to remove ")
-            performances.remove(artist_remove)
-            performances-=1
-            print(artist_list)
-
-# changes schedule
-def schedule_change():
-            artist_change=("what is the artist that you would like to change?")
+def schedule_remove(performances):
+    artist_remove=input("what is the artist's name that you would like to remove? (exact): ")
+    performances.remove(artist_remove)
+    performances-=1
+    print(artist_list)
 
 
-def admin_check(admin,id): # Checks if your admin or not (login interface)
+    # Adds the new artists info to the performances list
+    performances.remoce(artist_remove)
+
+
+    print("Artist removed the schedule.")
+    print(performances)
+
+
+
+
+
+
+# Changes schedule
+def schedule_change(performances):
+    artist_change = input("What is the artist's name that you would like to change? (exact): ")
+    artist_found = False
+    for artist in performances:
+        if artist['name'].lower() == artist_change.lower():
+            artist_found = True
+            new_name = input("Enter new name: ")
+            new_instrument = input("Enter new instrument: ")
+            new_genre = input("Enter new genre: ")
+            new_time = input("Enter new time: ")
+
+
+            # Update the artist's information
+            artist['name'] = new_name
+            artist['instrument'] = new_instrument
+            artist['genre'] = new_genre
+            artist['time'] = new_time
+            print(f"Artist {artist_change} updated successfully.")
+            break
+
+
+    if not artist_found:
+        print(f"Artist {artist_change} not found.")
+   
+    print(performances)
+
+
+
+
+def admin_check(admin,id,performances): # Checks if your admin or not (login interface)
     while True:
         cs()
         choice = int_input("Music Festival Login\n\n1. User login\n2. Admin login\n\nWhich one are you logging into? (1-2): ")
         if choice == 1: # User Login
             admin = False
-            main(admin,id)
+            main(admin,id,performances)
         elif choice == 2: # Admin Login
             cs()
             print("Admin Login Terminal")
@@ -618,11 +697,16 @@ def admin_check(admin,id): # Checks if your admin or not (login interface)
                 print("\nPassword Verified!")
                 admin = True
                 input("\nWelcome Admin!\nPress enter to continue")
-                main(admin,id)
+                main(admin,id,performances)
             else: # If incorrect
                 input("Invalid Password!\nPress enter to continue")
         else:
             input("Invalid Input! (1-2)\nPress enter to continue")
 
+
 # Running the Code
-admin_check(admin,id) # Checks if they are admin or not, then runs main
+admin_check(admin,id,performances) # Checks if they are admin or not, then runs main
+
+
+
+
