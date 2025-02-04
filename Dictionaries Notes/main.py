@@ -44,46 +44,76 @@ def what():
 
 #What are keys?
 def keys():
-    print("""rather then using an index like in a list you use the keys""")
+    print("""
+    rather then using an index like in a list you use the keys
+    """)
 
 
 #What are values?
 def values():
-    print("""the items in the list""")
+    print("""
+
+    the items in the list
+    
+    """)
 
 
 #How do you write a dictionary?
 def how():
-    print("""""")
+    print("""
+    here is an example
+
+    car = {
+        "make": ["Ford","Chevy", "toyota" "Honda", "tesla", "BMW"],
+        "modle": "escape xlt",
+        "year": 2008,
+        "color": "Red" 
+    }
+
+    
+    print(car["modle"])
+    """)
 
 
 #What data types can you have in a dictionary?
 def data_types():
-    print("""the dictionarys can have all the list values and also dictionarys""")
+    print("""
+    the dictionarys can have all the list values and also dictionarys
+    """)
 
 
 #How do you print 1 item from a dictionary?
 def print_from():
-    print("""here is an example
+    print("""
+    here is an example
+
           car = {
         "make": ["Ford","Chevy", "toyota" "Honda", "tesla", "BMW"],
         "modle": "escape xlt",
         "year": 2008,
         "color": "Red" 
-    }""")
+    }
+    
+     print(car.get("make"))
+    
+    """)
 
 
 #Why would you use a dictionary in a program?
 def why():
-    print("""you would use a dictionary in a program to make the code call an items for a dictionary to make it so that it will have a value to search by and then also to print with""")
+    print("""
+    you would use a dictionary in a program to make the code call an items for a dictionary to make it so that it will have a value to search by and then also to print with
+    """)
 
 
 #What methods can be used with dictionaries?
 def methods():
-    print("""there are several dictionarys methoids such as list, tuples and sets""")
+    print("""
+    there are several dictionarys methoids such as list, tuples and sets
+    """)
 
 def main():
-    while like_to_do != 8:
+    while 8:
         like_to_do=input("""what would you like to learn?
         1. What is a dictionary?
         2. What are keys?
@@ -93,7 +123,10 @@ def main():
         6. How do you print 1 item from a dictionary?
         7. Why would you use a dictionary in a program?
         8. What methods can be used with dictionaries?
-        9. end""")
+        9. end
+        
+        
+        """)
         if like_to_do == "1":
             what()
         elif like_to_do == "2":
@@ -115,3 +148,5 @@ def main():
             break
         else:
             print("you need a valid variable")
+
+main()
