@@ -1,7 +1,7 @@
 # file_handler.py
 
 def read_file(filename):
-    """Reads the content of the file."""
+    #Reads the content of the file.
     try:
         with open(filename, 'r') as file:
             return file.read()
@@ -13,7 +13,7 @@ def read_file(filename):
         return ""
 
 def write_file(filename, content):
-    """Writes the new content to the file, overwriting any existing content."""
+    #Writes the new content to the file, overwriting any existing content.
     try:
         with open(filename, 'w') as file:
             file.write(content)
@@ -21,7 +21,7 @@ def write_file(filename, content):
         print(f"Error writing to file: {e}")
 
 def get_word_count(filename):
-    """Returns the word count of the file content."""
+    #Returns the word count of the file content.
     try:
         with open(filename, 'r') as file:
             content = file.read()
@@ -35,7 +35,7 @@ def get_word_count(filename):
         return 0
 
 def update_file(filename, word_count, timestamp):
-    """Appends the word count and timestamp to the end of the file."""
+    #Appends the word count and timestamp to the end of the file.
     try:
         with open(filename, 'a') as file:
             file.write(f"\n\nWord Count: {word_count}\nLast Updated: {timestamp}")
