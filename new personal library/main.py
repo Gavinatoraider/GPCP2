@@ -76,7 +76,18 @@ def add_song():
         artist_songs[artist_name].append(song_name)
         print(f"Added '{song_name}' to {artist_name}'s song list.")
     else:
-        print("Artist not found. Please try again.")
+        while True:
+            add_new_artist= input("Artist not found. would you like to add a new artist? (yes, or no anything else wont work.) ")
+            if add_new_artist == "yes":
+                new_artist=input("what is the artists name? ")
+                artist_songs[artist_songs].append(new_artist)
+                new_song=input("what is the artists song? ")
+                artist_songs[new_artist].append(new_song)
+                break
+            elif add_new_artist == "no":
+                break
+            else:
+                print("you need to chose yes or no. ")
     
     return input_choice()
 
