@@ -1,6 +1,5 @@
 # Gavin Pierce Music Library
 # This is the main file for managing your personal music library.
-
 import random
 
 # The list of artists and their top songs
@@ -23,9 +22,9 @@ artist_songs = {
         "Cutthroat", "Scatter", "I'm Happy", "Lonely", "Follow You", "Giants", "Enemy", "Wrecked", 
         "Bones (Reimagined)", "Sharks", "Dull Knives (with JID)", "Crushed", "Take the World", "Daydreamer", 
         "Change", "It's Time", "Radioactive", "Demons", "On Top of the World", "I Bet My Life", "Whatever It Takes", 
-        "Believer", "Thunder", "Natural", "Bad Liar", "Machine", "Zero", "Next to Me", "Rise Up", "Follow You", 
-        "Wrecked", "Cutthroat", "Sharks", "Enemy", "Birds", "Amsterdam", "Friction", "Monster", "My Fault", 
-        "Yesterday", "Round and Round", "Tiptoe", "The Fall", "I Don't Like Myself", "The River", "Walking the Wire"
+        "Believer", "Thunder", "Natural", "Bad Liar", "Machine", "Zero", "Next to Me", "Rise Up", "Birds", 
+        "Amsterdam", "Friction", "Monster", "My Fault", "Yesterday", "Round and Round", "Tiptoe", "The Fall", 
+        "I Don't Like Myself", "The River", "Walking the Wire"
     ],
     "Taylor Swift": [
         "Love Story", "You Belong with Me", "Shake It Off", "Blank Space", "All Too Well", "Cardigan", 
@@ -53,15 +52,8 @@ artist_songs = {
     ]
 }
 
-
-
 def main():
-    like_to_do = input("""What would you like to do? 
-                         1 Add a song
-                         2 Remove a song
-                         3 Search for a song
-                         4 Shuffle music
-                         5 Stop\n""")
+    like_to_do = input_choice()
     
     while like_to_do != "5":
         if like_to_do == "1":
@@ -129,14 +121,14 @@ def shuffle_song():
         all_songs.extend(songs)  # Add all songs to the list
 
     random.shuffle(all_songs)  # Shuffle the complete list of songs
-    print("Shuffled music list:")
-    print(all_songs)
+    print("Shuffled music list (showing first 10 songs):")
+    print(all_songs[:10])  # Show only the first 10 shuffled songs
     
     return input_choice()
 
 def get_valid_song_name():
     while True:
-        song_name = input("Enter the song name: ")
+        song_name = input("Enter the song name: ").strip()
         
         # Check if input is a valid string
         if song_name.isdigit():  # If input is only digits, it's considered invalid
