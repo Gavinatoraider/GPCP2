@@ -55,7 +55,7 @@ artist_songs = {
 def main():
     like_to_do = input_choice()
     
-    while like_to_do != "5":
+    while like_to_do != "6":  # Change to 6 to stop on option 6
         if like_to_do == "1":
             like_to_do = add_song()
         elif like_to_do == "2":
@@ -64,30 +64,33 @@ def main():
             like_to_do = library_search()
         elif like_to_do == "4":
             like_to_do = shuffle_song()
+        elif like_to_do == "5":
+            like_to_do = view_library()  # Add option to view library
         else:
             print("Invalid choice, please select again.")
             like_to_do = input_choice()
 
 def add_song():
     artist_name = input("Enter the artist's name: ")
+    
+    # Check if the artist already exists in the library
     if artist_name in artist_songs:
         print(f"Adding a song to {artist_name}'s list.")
         song_name = get_valid_song_name()
         artist_songs[artist_name].append(song_name)
         print(f"Added '{song_name}' to {artist_name}'s song list.")
     else:
-        while True:
-            add_new_artist= input("Artist not found. would you like to add a new artist? (yes, or no anything else wont work.) ")
-            if add_new_artist == "yes":
-                new_artist=input("what is the artists name? ")
-                artist_songs[artist_songs].append(new_artist)
-                new_song=input("what is the artists song? ")
-                artist_songs[new_artist].append(new_song)
-                break
-            elif add_new_artist == "no":
-                break
-            else:
-                print("you need to chose yes or no. ")
+        print(f"{artist_name} is not in your library.")
+        add_artist = input(f"Would you like to add {artist_name} to the library? (yes/no): ").strip().lower()
+        
+        if add_artist == "yes":
+            print(f"Adding {artist_name} to the library.")
+            artist_songs[artist_name] = []  # Add the artist to the dictionary with an empty song list
+            song_name = get_valid_song_name()  # Get the first song
+            artist_songs[artist_name].append(song_name)
+            print(f"Added '{song_name}' to {artist_name}'s song list.")
+        else:
+            print(f"{artist_name} was not added.")
     
     return input_choice()
 
@@ -114,6 +117,7 @@ def library_search():
     # Iterate through the dictionary and check each artist's list of songs
     for artist, songs in artist_songs.items():
         for song in songs:
+            # Check the song name in lowercase to handle case-insensitivity
             if song.lower() == song_search:
                 print(f"The song '{song}' by {artist} is in your library.")
                 found = True
@@ -137,6 +141,17 @@ def shuffle_song():
     
     return input_choice()
 
+def view_library():
+    print("Current Artists and Their Songs:")
+    if not artist_songs:
+        print("Your library is empty.")
+    else:
+        for artist, songs in artist_songs.items():
+            print(f"{artist}:")
+            for song in songs:
+                print(f"  - {song}")
+    return input_choice()
+
 def get_valid_song_name():
     while True:
         song_name = input("Enter the song name: ").strip()
@@ -155,6 +170,7 @@ def input_choice():
                      2 Remove a song
                      3 Search for a song
                      4 Shuffle music
-                     5 Stop\n""")
+                     5 View all artists and songs
+                     6 Stop\n""")
 
 main()
