@@ -5,7 +5,7 @@ music_list = [
     "Wake Up", "Take Me to the Beach", "Don't Forget Me", "Nice to Meet You", "In Your Corner",
     "Kid", "Eyes Closed", "Gods Don't Pray", "Fire in These Hills", "My Life", "Bones", "Wait for Me", 
     "Wave", "Cutthroat", "Scatter", "I'm Happy", "Lonely", "Follow You", "Giants", "Enemy", "Wrecked", 
-    "Bones (Reimagined)", "Sharks", "Dull Knives (with JID)", "Crushed", "Take the World", "Daydreamer", 
+    "Bones (Reimagined)", "Sharks", "Dull Knives", "Crushed", "Take the World", "Daydreamer", 
     "Change",
 
     # Imagine Dragons Songs

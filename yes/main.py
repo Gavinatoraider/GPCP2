@@ -758,5 +758,4 @@ Burial Preparations And Mourning For Jacob
 
 Death of Joseph 22Now Joseph lived in Egypt, he and his father’s household, and Joseph lived a hundred and ten years. 23Joseph saw the third generation of Ephraim’s children; also the children of Machir, the son of Manasseh, were born and raised on Joseph’s knees. 24Joseph said to his brothers, “I am about to die, but God will surely take care of you and bring you up out of this land to the land which He promised to Abraham, to Isaac, and to Jacob [to give you].” 25Then Joseph made the sons of Israel (Jacob) swear [an oath], saying, “God will surely visit you and take care of you [returning you to Canaan], and [when that happens] you shall carry my bones up from here.” 26So Joseph died, being a hundred and ten years old; and they embalmed him and he was put in a coffin in Egypt."""
 
-while True:
-    print(bible)
+print(bible)

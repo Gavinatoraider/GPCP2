@@ -55,7 +55,7 @@ artist_songs = {
 def main():
     like_to_do = input_choice()
     
-    while like_to_do != "6":  # Change to 6 to stop on option 6
+    while like_to_do != "6":
         if like_to_do == "1":
             like_to_do = add_song()
         elif like_to_do == "2":
@@ -65,7 +65,7 @@ def main():
         elif like_to_do == "4":
             like_to_do = shuffle_song()
         elif like_to_do == "5":
-            like_to_do = view_library()  # Add option to view library
+            like_to_do = view_library()
         else:
             print("Invalid choice, please select again.")
             like_to_do = input_choice()
