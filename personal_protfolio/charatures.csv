@@ -1,0 +1,4 @@
+name,class,health,strength,defense,speed,level,experience,inventory
+Stong Warrior,warrior,100,15,10,8,1,0,Sword of Power;Steel Shield
+Elda Mage,mage,60,18,5,10,1,50,Staff of Wisdom;Mana Potion
+Shadow Rogue,rogue,80,12,8,14,2,200,Dagger of Stealth;Healing Potion
