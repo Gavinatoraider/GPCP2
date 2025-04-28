@@ -142,4 +142,5 @@ def password_main():
             print("Invalid choice. Please select again.")
 
 # Run the main function
-password_main()
+if __name__ == "main":
+    password_main()

@@ -104,4 +104,5 @@ def morse_main():
     print("Thanks for using the Morse code translator. Goodbye!")
 
 # Run the main function
-morse_main()
+if __name__ == "main":
+    morse_main()

@@ -82,4 +82,5 @@ def print_movie_list(movie_list):
         print(f"Title: {movie['Title']}, Genre: {movie['Genre']}, Director: {movie['Director']}, Length: {movie['Length (min)']} mins")
 
 # Run the main function
-movie_main()
+if __name__ == "main":
+    movie_main()

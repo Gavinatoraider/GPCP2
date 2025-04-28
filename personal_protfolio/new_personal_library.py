@@ -167,4 +167,5 @@ def input_choice():
                      5 View all artists and songs
                      6 Stop\n""")
 
-library_main()
+if __name__ == "main":
+    library_main()
