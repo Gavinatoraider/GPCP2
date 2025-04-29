@@ -14,7 +14,7 @@ import updated_battle_simmulator
 
 def main():
     while True:
-      like_to_do = ("""
+      like_to_do = input("""
       
                   welcome to my personal portfolio. This project is to show some of the things that I have done this year that I am most proud of.
                   what would you like to do?
@@ -25,7 +25,8 @@ def main():
                   4. see password generator
                   5. see to do list
                   6. see updated battle simmulator
-                  7. exit""")
+                  7. exit
+                         """)
       if like_to_do == "1":
           morse_code()
 
@@ -46,7 +47,7 @@ def main():
       elif like_to_do == "7":
           print("thanks for reveiwing my personal protfolio")
       else:
-          print("you need a valid choose. ")
+          print("you need a valid chiose. ")
 
 
 main()
